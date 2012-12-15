@@ -1,8 +1,8 @@
 <?php
 include_once('ipaddress.php');
 define("TOKEN","easychat");
-$wechatObj = new wechatCallbackapiTest();
-//$wechatObj->valid();
+//$wechatObj = new wechatCallbackapiTest();
+$wechatObj->valid();
 $wechatObj->responseMsg();
 
 class wechatCallbackapiTest
