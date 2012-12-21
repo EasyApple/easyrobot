@@ -20,13 +20,13 @@ $config = array();
 // Database connection values:
 $config['dbConnection'] = array();
 // Database hostname:
-$config['dbConnection']['host'] = 'localhost';
+$config['dbConnection']['host'] = SAE_MYSQL_HOST_M;
 // Database username:
-$config['dbConnection']['user'] = 'root';
+$config['dbConnection']['user'] = SAE_MYSQL_USER;
 // Database password:
-$config['dbConnection']['pass'] = '';
+$config['dbConnection']['pass'] = SAE_MYSQL_PASS;
 // Database name:
-$config['dbConnection']['name'] = 'chat';
+$config['dbConnection']['name'] = SAE_MYSQL_DB;
 // Database type:
 $config['dbConnection']['type'] = null;
 // Database link:
