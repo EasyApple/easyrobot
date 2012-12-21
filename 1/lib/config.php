@@ -30,7 +30,7 @@ $config['dbConnection']['name'] = SAE_MYSQL_DB;
 // Database type:
 $config['dbConnection']['type'] = null;
 // Database link:
-$config['dbConnection']['link'] = SAE_MYSQL_HOST_M.':'.SAE_MYSQL_PORT,SAE_MYSQL_USER,SAE_MYSQL_PASS;
+$config['dbConnection']['link'] = mysql_connect(SAE_MYSQL_HOST_M.':'.SAE_MYSQL_PORT,SAE_MYSQL_USER,SAE_MYSQL_PASS);
 // Database table names:
 $config['dbTableNames'] = array();
 $config['dbTableNames']['online']		= 'ajax_chat_online';
