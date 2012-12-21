@@ -38,7 +38,7 @@ if (!$success) {
 	print "<b>Cannot choose database, check if database name is correct.";
 	die();
 }
-$config['dbConnection']['link'] = &link;
+$config['dbConnection']['link'] = $link;
 
 // Database table names:
 $config['dbTableNames'] = array();
