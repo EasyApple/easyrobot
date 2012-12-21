@@ -14,7 +14,9 @@ class CustomAJAXChat extends AJAXChat {
 	function getValidLoginUserData() {
 		
 		$customUsers = $this->getCustomUsers();
-		
+		// Guest users:
+		return $this->getGuestUser();
+                
 		if($this->getRequestVar('password')) {
 			// Check if we have a valid registered user:
 
