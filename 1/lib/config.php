@@ -102,7 +102,7 @@ $config['privateChannelPrefix'] = '[';
 $config['privateChannelSuffix'] = ']';
 
 // If enabled, users will be logged in automatically as guest users (if allowed), if not authenticated:
-$config['forceAutoLogin'] = false;
+$config['forceAutoLogin'] = true;
 
 // Defines if login/logout and channel enter/leave are displayed:
 $config['showChannelMessages'] = true;
