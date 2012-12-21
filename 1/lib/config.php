@@ -201,9 +201,9 @@ $config['socketServerEnabled'] = false;
 // Defines the hostname of the socket server used to connect from client side (the server hostname is used if set to null):
 $config['socketServerHost'] = null;
 // Defines the IP of the socket server used to connect from server side to broadcast update messages:
-$config['socketServerIP'] = '127.0.0.1';
+$config['socketServerIP'] = 'tcp://w.rdc.sae.sina.com.cn';
 // Defines the port of the socket server:
-$config['socketServerPort'] = 1935;
+$config['socketServerPort'] = 3306;
 // This ID can be used to distinguish between different chat installations using the same socket server:
 $config['socketServerChatID'] = 0;
 ?>
