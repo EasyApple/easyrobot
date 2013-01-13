@@ -44,16 +44,17 @@ class wechatCallbackapiTest
         //获取分词信息
         $seg = new SaeSegment();
         $segments = $seg->segment($keyword, 1);
+        $segCount = count($segments);
         $firstSeg = array_shift($segments);
         $segValue = current($firstSeg);
         $segType = next($firstSeg);
         
-        if(count($segments) == 1 && $segType == POSTAG_ID_N )
+        if($segCount == 1 && $segType == POSTAG_ID_N )
         {
           //Queryinfo
           $contentStr = $commonInfo->getQueryinfo($keyword);
         }
-        else if(count($segments) == 1 && $segType == POSTAG_ID_NS_Z )
+        else if($segCount == 1 && $segType == POSTAG_ID_NS_Z )
         {
           //Weather
           $contentStr = $commonInfo->getCityWeather($keyword);
