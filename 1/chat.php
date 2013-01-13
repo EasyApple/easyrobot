@@ -61,8 +61,8 @@ class wechatCallbackapiTest
         {
           //Talk
           $talk = new talk();
-          //$reply = $talk->reply($keyword);
-          //if (empty($reply)) 
+          $reply = $talk->reply($keyword);
+          if (empty($reply)) 
           {
             $reply = $talk->replyEx($keyword);
             //$talk->learn($keyword,$reply);
