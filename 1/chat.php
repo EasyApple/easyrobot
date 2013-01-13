@@ -44,9 +44,9 @@ class wechatCallbackapiTest
         $cityname = $cityinfo;
         $welcomeinfo = "灵感机器人欢迎你!";
         $segments = $commonInfo->getStrSegments($keyword);
-        $segment = array_shift($segments);
-        $keyValue = current($queKey);
-        $keyType = next($queKey);
+        $firstSeg = array_shift($segments);
+        $keyValue = current($firstSeg);
+        $keyType = next($firstSeg);
         
         if(count($segments) == 1 && $keyType == POSTAG_ID_N )
         {
