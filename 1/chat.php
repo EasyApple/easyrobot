@@ -84,7 +84,7 @@ class wechatCallbackapiTest
             $reply = $tipinfo.$queryinfo;
 
             //自主学习
-            $answer = $talk->getAnswer($keyword, substr($queryinfo,strlen($keyword),512));            
+            //$answer = $talk->getAnswer($keyword, substr($queryinfo,strlen($keyword),512));            
             if(empty($answer))
             {
               $contentStr .= $reply;
