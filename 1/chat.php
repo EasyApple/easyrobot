@@ -49,7 +49,7 @@ class wechatCallbackapiTest
         $segValue = current($firstSeg);
         $segType = next($firstSeg);
         
-        if($segCount == 1 && $segType == POSTAG_ID_N )
+        if($segCount == 1)
         {
           //Queryinfo
           $contentStr = $commonInfo->getQueryinfo($keyword);
