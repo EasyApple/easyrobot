@@ -45,6 +45,7 @@ class wechatCallbackapiTest
         $keyValue = current($firstSeg);
         $keyType = next($firstSeg);
         
+        /*
         if(count($segments) == 1 && $keyType == POSTAG_ID_N )
         {
           //Queryinfo
@@ -56,6 +57,7 @@ class wechatCallbackapiTest
           $contentStr = $commonInfo->getCityWeather($keyword);
         }
         else
+*/
         {
           //Talk
           $talk = new talk();
