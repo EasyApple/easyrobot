@@ -1,5 +1,4 @@
 <?php
-//include_once('ipaddress.php');
 define("TOKEN","easychat");
 $wechatObj = new wechatCallbackapiTest();
 //$wechatObj->valid();
@@ -43,97 +42,45 @@ class wechatCallbackapiTest
         $ipaddr = $commonInfo->getClientIp();
         $cityinfo = $commonInfo->getIpCity($ipaddr);
         $cityname = $cityinfo;
-        $exinfo = $cityinfo;
-        $pos = strpos($cityinfo, ' ', 3);
-        if ($pos > -1)
-        {
-          $cityname = substr($cityinfo, 0, $pos); 
-          $exinfo = substr($cityinfo, $pos + 1, strlen($cityinfo) - $pos - 1);
-        }
-        if (strlen($cityname) > 3)
-        {
-          $cityflag = substr($cityname, 0, strlen($cityname) - 3);
-        }
-        else
-        {
-          $cityflag = "地球";
-        }
         $welcomeinfo = "灵感机器人欢迎你!";
-        $contentStr = "来自".$cityflag.$exinfo."的朋友".$welcomeinfo."\r\n";
-        $contentStr .= "你的IP地址是：" . $ipaddr . "\r\n";
+        $segments = $commonInfo->getStrSegments($keyword);
+        $segment = array_shift($segments);
+        $keyValue = current($queKey);
+        $keyType = next($queKey);
         
-        if(strtolower($keyword) == 'weather' || $keyword == '天气')
+        if(count($segments) == 1 && $keyType == POSTAG_ID_N )
         {
-          //Wether Report
-          $contentStr .= $commonInfo->getWeatherInfo($cityflag);
+          //Queryinfo
+          $contentStr = $commonInfo->getQueryinfo($keyword);
+        }
+        else if(count($segments) == 1 && $keyType == POSTAG_ID_NS_Z )
+        {
+          //Weather
+          $contentStr = $commonInfo->getCityWeather($keyword);
         }
         else
         {
-          //Robot
+          //Talk
           $talk = new talk();
           $reply = $talk->reply($keyword);
           if (empty($reply)) 
           {
-            //虫洞查询 
-            $tipinfo = "你可以输入‘help’教我学习聊天，或者输入‘天气’看看天气情况。\r\n你说的内容我不太懂，所以上网查了一下 ^_^\r\n\r\n";
-            $queryinfo = file_get_contents("http://wap.unidust.cn/api/searchout.do?type=client&ch=1001&info=".$keyword);
-            $pos = strpos($queryinfo,$keyword);
-            $queryinfo = mb_strcut($queryinfo,$pos,1024,'utf-8');
-            $queryinfo = str_replace("uzoo.cn","www.easyapple.net",$queryinfo);
-            $queryinfo = str_replace("虫洞","EasyApple",$queryinfo);
-            $reply = $tipinfo.$queryinfo;
-            
-            //自主学习
-            //$answer = $talk->getAnswer($keyword, substr($queryinfo,strlen($keyword),512)); 
-            
-            //小i机器人
-            $post_data = array ('requestContent=' . $keyword);
-            $post_data = implode ( '&', $post_data );
-            $url = 'http://nlp.xiaoi.com/robot/demo/wap/wap-demo.action';            
-            $ch = curl_init ();
-            curl_setopt ( $ch, CURLOPT_POST, 1 );
-            curl_setopt ( $ch, CURLOPT_URL, $url );
-            curl_setopt ( $ch, CURLOPT_POSTFIELDS, $post_data );
-            ob_start ();
-            curl_exec ( $ch );
-            $result = ob_get_contents ();
-            ob_end_clean ();         
-            $preg = '/<\/span>(.*)<\/p>/iUs';
-            preg_match_all ( $preg, $result, $match );
-            $response_msg = $match [0] [0];
-            $preg = "/<\/?[^>]+>/i";
-            $response_msg = preg_replace ( $preg, '', $response_msg );
-            if ("hello,how are you" == $response_msg || "how do you do" == $response_msg) {
-                $response_msg = "小i机器人欢迎您，小i机器人不断学习中，欢迎各种调戏.../:,@-D"; // 欢迎语
-            }
-            $answer = trim ( $response_msg );
-            $answer = str_replace("小i","灵感机器人",$answer);
-          
-            if(empty($answer))
-            {
-              $contentStr .= $reply;
-            }
-            else
-            {
-              $contentStr = $answer;
-            }
+            $reply = $talk->replyEx($keyword);
+            $talk->learn($keyword,$reply);
           }
-          else
-          {
-            $contentStr = $reply;
-          }          
+          $contentStr = $reply;      
         }
         
         if (empty($contentStr)) 
         {
-          $contentStr = "亲爱的，跟你聊天我学到了不少东西，此时我不知道说什么好。。。";
+          $contentStr = $welcomeinfo;
         }
         $resultStr = sprintf ( $textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr );
         echo $resultStr;
       }
       else
       {
-        echo "Input something…";
+        echo "亲爱的，说点啥吧。。。";
       }
     }
     else
@@ -163,7 +110,6 @@ class wechatCallbackapiTest
     }
   }
 }
-
 
 class commonInfo
 {
@@ -209,9 +155,17 @@ class commonInfo
     $city=array_shift($arr);
     return $city;
   }
+
+  //获取分词信息
+  public function getStrSegments($str)
+  {
+    $seg = new SaeSegment();
+    $segments = $seg->segment($str, 1);
+    return $segments;
+  }
   
   // Get Weather Info By Cidy Name
-  public function getWeatherInfo($city)
+  public function getCityWeather($city)
   {
     $post_data = array();
     $post_data['city'] = $city;
@@ -250,72 +204,32 @@ class commonInfo
                   %s，%s
                   后天天气：%s
                   %s，%s";
-    $info = sprintf($contentTpl,$weatherinfo['city'],$weatherinfo['city_en'],$weatherinfo['date_y'],$weatherinfo['week'],$weatherinfo['fchh'],$weatherinfo['temp1'],$weatherinfo['weather1'],$weatherinfo['wind1'],$weatherinfo['index_d'],$weatherinfo['index_uv'],$weatherinfo['index_xc'],$weatherinfo['temp2'],$weatherinfo['weather2'],$weatherinfo['wind2'],$weatherinfo['temp3'],$weatherinfo['weather3'],$weatherinfo['wind3']);
-    return $info;
+    $weather = sprintf($contentTpl,$weatherinfo['city'],$weatherinfo['city_en'],$weatherinfo['date_y'],$weatherinfo['week'],$weatherinfo['fchh'],$weatherinfo['temp1'],$weatherinfo['weather1'],$weatherinfo['wind1'],$weatherinfo['index_d'],$weatherinfo['index_uv'],$weatherinfo['index_xc'],$weatherinfo['temp2'],$weatherinfo['weather2'],$weatherinfo['wind2'],$weatherinfo['temp3'],$weatherinfo['weather3'],$weatherinfo['wind3']);
+    return $weather;
+  }
+
+  public function getQueryinfo($keyword)
+  {
+    //虫洞查询 
+    $queryinfo = file_get_contents("http://wap.unidust.cn/api/searchout.do?type=client&ch=1001&info=".$keyword);
+    $pos = strpos($queryinfo,$keyword);
+    $queryinfo = mb_strcut($queryinfo,$pos,1024,'utf-8');
+    $queryinfo = str_replace("uzoo.cn","www.easyapple.net",$queryinfo);
+    $queryinfo = str_replace("虫洞","EasyApple",$queryinfo);
+    return $queryinfo;
   }
 }
 
 
 class talk 
 {
-
-  public function getAnswer($question, $answerinfo)
+  public function learn($q,$a)
   {
-    $score = 0;
-    $answer = "";
-    $seg = new SaeSegment();
-    $questionKeys = $seg->segment($question, 1);
-    $answerKeys = $seg->segment($answerinfo, 1);
-    
-    while(count($questionKeys) > 0)
-    {
-      $queKey = array_shift($questionKeys);
-      $queValue = current($queKey);
-      $queType = next($queKey);
-    
-      $ans = $queValue;
-      while(count($answerKeys) > 0)
-      {
-        $ansKey = array_shift($answerKeys);
-        $ansValue = current($ansKey);
-        $ansType = next($ansKey);
-        if ($ansType == $queType)
-        {
-          //$score++;
-          $ans = $ansValue;
-          break;
-        }
-      }
-      
-      $answer .= $ans;
-    }
-    
-    if($score > 0)
-    {
-      learn("?" . $question . ":" . $answer);
-    }
-    return $answer;
-  }
-
-  public function learn($str)
-  {
-    if (substr($str, 0,1) == '?')
-    {
-      $kv = new SaeKV ();
-      $kv->init();
-      $str = strtolower($str);  //转为小写
-      $pos = strpos($str, ':');
-      if ($pos > -1)
-      {
-        $q = substr($str, 1,$pos - 1);
-        $a = substr($str, $pos + 1);
-        $ret = $kv->get('know_' . md5($q));
-        if ($ret === false || !is_array($ret))
-          $ret = array();
-        $ret[] = $a;
-        $kv->set('know_' . md5($q), $ret);
-      }
-    }
+    $ret = $kv->get('know_' . md5($q));
+    if ($ret === false || !is_array($ret))
+      $ret = array();
+    $ret[] = $a;
+    $kv->set('know_' . md5($q), $ret);
   }
   
   public function reply($str)
@@ -325,11 +239,11 @@ class talk
     $str = strtolower($str);  //转为小写
     if ($str == 'help' || $str == '求助')
     {
-      return "要教我学习，请输入：\r\n?问题:答案 例如：?hi:hello";
+      return "要教我学习，请输入：\r\n?问题/答案 例如：?hi/hello";
     }
     if (substr($str, 0,1) == '?')
     {
-      $pos = strpos($str, ':');
+      $pos = strpos($str, '/');
       if ($pos > -1)
       {
         $q = substr($str, 1,$pos - 1);
@@ -359,6 +273,30 @@ class talk
       }
       return array_shift($ret);
     }    
+  }
+
+  public function replyEx($str)
+  {
+    //小i机器人
+    $post_data = array ('requestContent=' . $keyword);
+    $post_data = implode ( '&', $post_data );
+    $url = 'http://nlp.xiaoi.com/robot/demo/wap/wap-demo.action';            
+    $ch = curl_init ();
+    curl_setopt ( $ch, CURLOPT_POST, 1 );
+    curl_setopt ( $ch, CURLOPT_URL, $url );
+    curl_setopt ( $ch, CURLOPT_POSTFIELDS, $post_data );
+    ob_start ();
+    curl_exec ( $ch );
+    $result = ob_get_contents ();
+    ob_end_clean ();         
+    $preg = '/<\/span>(.*)<\/p>/iUs';
+    preg_match_all ( $preg, $result, $match );
+    $response_msg = $match [0] [0];
+    $preg = "/<\/?[^>]+>/i";
+    $response_msg = preg_replace ( $preg, '', $response_msg );
+    $answer = trim ( $response_msg );
+    $answer = str_replace("小i","灵感机器人",$answer);
+    return $answer;
   }
 }
 
