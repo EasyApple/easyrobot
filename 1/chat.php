@@ -40,17 +40,20 @@ class wechatCallbackapiTest
         $msgType = "text";
         $commonInfo = new commonInfo();
         $welcomeinfo = "灵感机器人欢迎你!";
-        $segments = $commonInfo->getStrSegments($keyword);
-        $firstSeg = array_shift($segments);
-        $keyValue = current($firstSeg);
-        $keyType = next($firstSeg);
         
-        if(count($segments) == 1 && $keyType == POSTAG_ID_N )
+        //获取分词信息
+        $seg = new SaeSegment();
+        $segments = $seg->segment($keyword, 1);
+        $firstSeg = array_shift($segments);
+        $segValue = current($firstSeg);
+        $segType = next($firstSeg);
+        
+        if(count($segments) == 1 && $segType == POSTAG_ID_N )
         {
           //Queryinfo
           $contentStr = $commonInfo->getQueryinfo($keyword);
         }
-        else if(count($segments) == 1 && $keyType == POSTAG_ID_NS_Z )
+        else if(count($segments) == 1 && $segType == POSTAG_ID_NS_Z )
         {
           //Weather
           $contentStr = $commonInfo->getCityWeather($keyword);
@@ -63,7 +66,7 @@ class wechatCallbackapiTest
           if (empty($reply)) 
           {
             $reply = $talk->replyEx($keyword);
-            //$talk->learn($keyword,$reply);
+            $talk->learn($keyword,$reply);
           }
           $contentStr = $reply;      
         }
@@ -152,14 +155,6 @@ class commonInfo
     $city=array_shift($arr);
     return $city;
   }
-
-  //获取分词信息
-  public function getStrSegments($str)
-  {
-    $seg = new SaeSegment();
-    $segments = $seg->segment($str, 1);
-    return $segments;
-  }
   
   // Get Weather Info By Cidy Name
   public function getCityWeather($city)
@@ -222,6 +217,8 @@ class talk
 {
   public function learn($q,$a)
   {
+    $kv = new SaeKV ();
+    $kv->init();
     $ret = $kv->get('know_' . md5($q));
     if ($ret === false || !is_array($ret))
       $ret = array();
