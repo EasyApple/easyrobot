@@ -83,8 +83,34 @@ class wechatCallbackapiTest
             $queryinfo = str_replace("虫洞","EasyApple",$queryinfo);
             $reply = $tipinfo.$queryinfo;
 
+            //小i机器人
+            $post_data = array (
+                'requestContent=' . $keyword
+            );
+            $post_data = implode ( '&', $post_data );
+            $url = 'http://nlp.xiaoi.com/robot/demo/wap/wap-demo.action';
+             
+            $ch = curl_init ();
+            curl_setopt ( $ch, CURLOPT_POST, 1 );
+            curl_setopt ( $ch, CURLOPT_URL, $url );
+            curl_setopt ( $ch, CURLOPT_POSTFIELDS, $post_data );
+            ob_start ();
+            curl_exec ( $ch );
+            $result = ob_get_contents ();
+            ob_end_clean ();
+             
+            $preg = '/<\/span>(.*)<\/p>/iUs';
+            preg_match_all ( $preg, $result, $match );
+            $response_msg = $match [0] [0];
+            $preg = "/<\/?[^>]+>/i";
+            $response_msg = preg_replace ( $preg, '', $response_msg );
+            if ("hello,how are you" == $response_msg || "how do you do" == $response_msg) {
+                $response_msg = "小i机器人欢迎您，小i机器人不断学习中，欢迎各种调戏.../:,@-D"; // 欢迎语
+            }
+            $answer = trim ( $response_msg );
+
             //自主学习
-            $answer = $talk->getAnswer($keyword, substr($queryinfo,strlen($keyword),512));            
+            //$answer = $talk->getAnswer($keyword, substr($queryinfo,strlen($keyword),512));            
             if(empty($answer))
             {
               $contentStr .= $reply;
