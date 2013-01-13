@@ -39,9 +39,6 @@ class wechatCallbackapiTest
       {
         $msgType = "text";
         $commonInfo = new commonInfo();
-        $ipaddr = $commonInfo->getClientIp();
-        $cityinfo = $commonInfo->getIpCity($ipaddr);
-        $cityname = $cityinfo;
         $welcomeinfo = "灵感机器人欢迎你!";
         $segments = $commonInfo->getStrSegments($keyword);
         $firstSeg = array_shift($segments);
