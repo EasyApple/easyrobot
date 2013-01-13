@@ -107,7 +107,7 @@ class wechatCallbackapiTest
                 $response_msg = "小i机器人欢迎您，小i机器人不断学习中，欢迎各种调戏.../:,@-D"; // 欢迎语
             }
             $answer = trim ( $response_msg );
-            $answer = str_replace("小i","EasyRobot",$answer);
+            $answer = str_replace("小i","灵感机器人",$answer);
           
             if(empty($answer))
             {
