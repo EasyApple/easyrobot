@@ -277,7 +277,7 @@ class talk
   public function replyEx($str)
   {
     //小i机器人
-    $post_data = array ('requestContent=' . $keyword);
+    $post_data = array ('requestContent=' . $str);
     $post_data = implode ( '&', $post_data );
     $url = 'http://nlp.xiaoi.com/robot/demo/wap/wap-demo.action';            
     $ch = curl_init ();
