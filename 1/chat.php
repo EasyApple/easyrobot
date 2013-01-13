@@ -291,6 +291,8 @@ class talk
     $response_msg = preg_replace ( $preg, '', $response_msg );
     $answer = trim ( $response_msg );
     $answer = str_replace("小i","灵感机器人",$answer);
+    $answer = str_replace("Xiao i,","EasyRobot",$answer);
+    $answer = str_replace("www.xiaoi.com","www.easyapple.net",$answer);
     return $answer;
   }
 }
