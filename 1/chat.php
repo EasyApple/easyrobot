@@ -106,7 +106,8 @@ class wechatCallbackapiTest
             if ("hello,how are you" == $response_msg || "how do you do" == $response_msg) {
                 $response_msg = "小i机器人欢迎您，小i机器人不断学习中，欢迎各种调戏.../:,@-D"; // 欢迎语
             }
-            $answer = "（暂时调用小i接口）". trim ( $response_msg );
+            $answer = trim ( $response_msg );
+            $answer = str_replace("小i","EasyRobot",$answer);
           
             if(empty($answer))
             {
