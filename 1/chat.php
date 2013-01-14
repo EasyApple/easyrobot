@@ -64,20 +64,28 @@ class wechatCallbackapiTest
         }
         else
         {
-          //$reply = $talk->reply($keyword);
-          if (empty($reply)) 
+          $reply = $talk->replyEx($keyword);
+          if (!empty($reply)) 
           {
-            $reply = $talk->replyEx($keyword);
             $talk->learn($keyword,$reply);
           }
-          $contentStr = $reply;      
+          else
+          {
+            $reply = $talk->reply($keyword);
+            if (empty($reply)) 
+            {
+              //Queryinfo
+              $answerinfo = $commonInfo->getQueryinfo($keyword);
+              //Smart Answer
+              $reply = $talk->getAnswer($keyword,$answerinfo);              
+            }
+          }
+          $contentStr = $reply;    
         }
         
         if (empty($contentStr)) 
         {
-          //Queryinfo
-          $answerinfo = $commonInfo->getQueryinfo($keyword);
-          $contentStr = $talk->getAnswer($keyword,$answerinfo);
+          $contentStr = $welcomeinfo;
         }
         $resultStr = sprintf ( $textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr );
         echo $resultStr;
