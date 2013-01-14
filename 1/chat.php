@@ -74,7 +74,8 @@ class wechatCallbackapiTest
         
         if (empty($contentStr)) 
         {
-          $contentStr = $welcomeinfo;
+          //Queryinfo
+          $contentStr = $commonInfo->getQueryinfo($keyword);
         }
         $resultStr = sprintf ( $textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr );
         echo $resultStr;
