@@ -41,6 +41,9 @@ class wechatCallbackapiTest
         $commonInfo = new commonInfo();
         $welcomeinfo = "灵感机器人欢迎你!";
         
+        
+        //Talk
+        $talk = new talk();
         //获取分词信息
         $seg = new SaeSegment();
         $segments = $seg->segment($keyword, 1);
@@ -61,8 +64,6 @@ class wechatCallbackapiTest
         }
         else
         {
-          //Talk
-          $talk = new talk();
           //$reply = $talk->reply($keyword);
           if (empty($reply)) 
           {
@@ -75,7 +76,8 @@ class wechatCallbackapiTest
         if (empty($contentStr)) 
         {
           //Queryinfo
-          $contentStr = $commonInfo->getQueryinfo($keyword);
+          $answerinfo = $commonInfo->getQueryinfo($keyword);
+          $contentStr = $talk->getAnswer($keyword,$answerinfo);
         }
         $resultStr = sprintf ( $textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr );
         echo $resultStr;
@@ -296,6 +298,44 @@ class talk
     $answer = str_replace("www.xiaoi.com","www.easyapple.net",$answer);
     $answer = str_replace("袁辉","灵感水手",$answer);
     $answer = str_replace("max","Jack",$answer);
+    return $answer;
+  }
+  
+  public function getAnswer($question, $answerinfo)
+  {
+    $score = 0;
+    $answer = "";
+    $seg = new SaeSegment();
+    $questionKeys = $seg->segment($question, 1);
+    $answerKeys = $seg->segment($answerinfo, 1);
+    
+    while(count($questionKeys) > 0)
+    {
+      $queKey = array_shift($questionKeys);
+      $queValue = current($queKey);
+      $queType = next($queKey);
+    
+      $ans = $queValue;
+      while(count($answerKeys) > 0)
+      {
+        $ansKey = array_shift($answerKeys);
+        $ansValue = current($ansKey);
+        $ansType = next($ansKey);
+        if ($ansType == $queType)
+        {
+          //$score++;
+          $ans = $ansValue;
+          break;
+        }
+      }
+      
+      $answer .= $ans;
+    }
+    
+    if($score > 0)
+    {
+      learn($question,$answer);
+    }
     return $answer;
   }
 }
