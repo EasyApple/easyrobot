@@ -293,6 +293,8 @@ class talk
     $answer = str_replace("小i","灵感机器人",$answer);
     $answer = str_replace("Xiao i","EasyRobot",$answer);
     $answer = str_replace("www.xiaoi.com","www.easyapple.net",$answer);
+    $answer = str_replace("袁辉","灵感水手",$answer);
+    $answer = str_replace("max","Jack",$answer);
     return $answer;
   }
 }
