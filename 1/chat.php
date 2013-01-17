@@ -352,7 +352,7 @@ class talk
           
           $answer .= $ansSeg;
         }
-      ｝
+      }
     }
     
     return $answer;
