@@ -302,7 +302,7 @@ class talk
     preg_match('/XISESSIONID=(.*);/', $r, $match);  //cookie为XISESSIONID
     $sid = $match[1];
 
-    $key=urldecode($keyword);
+    $key=urldecode($str);
     $post_data = array (
         'requestContent=' . $key
     );
