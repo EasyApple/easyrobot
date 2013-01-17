@@ -330,7 +330,7 @@ class talk
         $ret = $kv->get('know_seg_' . md5($queValue));
         if ($ret === false　|| !is_array($ret) || count($ret) == 0)
         {
-          $answer .= '';
+          $answer .= $queValue;
         }
         else
         {
