@@ -225,11 +225,11 @@ class commonInfo
   }
 }
 
-
 class talk 
 {
   public function learn($q,$a)
   {
+    //整句学习
     $kv = new SaeKV ();
     $kv->init();
     $ret = $kv->get('know_' . md5($q));
@@ -237,6 +237,33 @@ class talk
       $ret = array();
     $ret[] = $a;
     $kv->set('know_' . md5($q), $ret);
+    
+    //分词学习
+    $seg = new SaeSegment();
+    $questionKeys = $seg->segment($q, 1);
+    $answerKeys = $seg->segment($a, 1);    
+    while(count($questionKeys) > 0)
+    {
+      $queKey = array_shift($questionKeys);
+      $queValue = current($queKey);
+      $queType = next($queKey);
+    
+      while(count($answerKeys) > 0)
+      {
+        $ansKey = array_shift($answerKeys);
+        $ansValue = current($ansKey);
+        $ansType = next($ansKey);
+        if ($ansType == $queType)
+        {
+          $ret = $kv->get('know_seg_' . md5($queValue));
+          if ($ret === false || !is_array($ret))
+            $ret = array();
+          $ret[] = $ansValue;
+          $kv->set('know_seg_' . md5($queValue), $ret);          
+          break;
+        }
+      }
+    }
   }
   
   public function reply($str)
@@ -351,7 +378,6 @@ class talk
   
   public function getAnswer($question, $answerinfo)
   {
-    $score = 0;
     $answer = "";
     $seg = new SaeSegment();
     $questionKeys = $seg->segment($question, 1);
@@ -371,7 +397,6 @@ class talk
         $ansType = next($ansKey);
         if ($ansType == $queType)
         {
-          //$score++;
           $ans = $ansValue;
           break;
         }
@@ -380,10 +405,6 @@ class talk
       $answer .= $ans;
     }
     
-    if($score > 0)
-    {
-      learn($question,$answer);
-    }
     return $answer;
   }
 }
