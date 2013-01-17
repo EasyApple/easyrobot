@@ -286,7 +286,8 @@ class talk
     //小i机器人
     $post_data = array ('requestContent=' . $str);
     $post_data = implode ( '&', $post_data );
-    $url = 'http://nlp.xiaoi.com/robot/demo/wap/wap-demo.action';            
+    $url = 'http://nlp.xiaoi.com/robot/demo/wap/wap-demo.action';
+    $url = 'http://nlp.xiaoi.com/robot/demo/sms/';
     $ch = curl_init ();
     curl_setopt ( $ch, CURLOPT_POST, 1 );
     curl_setopt ( $ch, CURLOPT_URL, $url );
