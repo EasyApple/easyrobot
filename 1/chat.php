@@ -286,8 +286,44 @@ class talk
     //小i机器人
     $post_data = array ('requestContent=' . $str);
     $post_data = implode ( '&', $post_data );
+    //$url = 'http://nlp.xiaoi.com/robot/demo/wap/wap-demo.action';
+    //$url = 'http://nlp.xiaoi.com/robot/demo/sms/'; 
+    $url = 'http://nlp.xiaoi.com/robot/demo/wap/';
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_HEADER,1);
+    $user_agent = "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)";
+    curl_setopt ($ch, CURLOPT_USERAGENT, $user_agent);
+    curl_setopt($ch, CURLOPT_REFERER, "nlp.xiaoi.com");
+    curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
+    $r = curl_exec($ch);
+    curl_close($ch);
+    preg_match('/XISESSIONID=(.*);/', $r, $match);  //cookie为XISESSIONID
+    $sid = $match[1];
+
+    $key=urldecode($keyword);
+    $post_data = array (
+        'requestContent=' . $key
+    );
+    $post_data = implode ( '?', $post_data );
     $url = 'http://nlp.xiaoi.com/robot/demo/wap/wap-demo.action';
-    $url = 'http://nlp.xiaoi.com/robot/demo/sms/';
+    $ch = curl_init ();
+    curl_setopt ( $ch, CURLOPT_URL, $url );
+    $user_agent = "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)";
+    curl_setopt ($ch, CURLOPT_USERAGENT, $user_agent);
+    curl_setopt ( $ch, CURLOPT_POST, 1 );
+    curl_setopt ( $ch, CURLOPT_POSTFIELDS, $post_data );
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    $cookie = 'XISESSIONID='.$sid;
+    curl_setopt($ch, CURLOPT_COOKIE , $cookie);
+    $result=curl_exec ( $ch );
+    $preg = '/<\/span>(.*)<\/p>/iUs';
+    preg_match_all ( $preg, $result, $match );
+    $response_msg = $match [0] [0];
+    $preg = "/<\/?[^>]+>/i";
+    $response_msg = preg_replace ( $preg, '', $response_msg );
+    
+    /*
     $ch = curl_init ();
     curl_setopt ( $ch, CURLOPT_POST, 1 );
     curl_setopt ( $ch, CURLOPT_URL, $url );
@@ -301,6 +337,8 @@ class talk
     $response_msg = $match [0] [0];
     $preg = "/<\/?[^>]+>/i";
     $response_msg = preg_replace ( $preg, '', $response_msg );
+    */
+    
     $answer = trim ( $response_msg );
     $answer = str_replace("小i","灵感机器人",$answer);
     $answer = str_replace("Xiao i","EasyRobot",$answer);
