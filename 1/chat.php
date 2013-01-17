@@ -290,11 +290,13 @@ class talk
         return "known::" . $q . '/' . $a ;
       }
     }
-    
+        
+    //整句回应
+    $answer = '';
     $ret = $kv->get('know_' . md5($str));
     if ($ret === false　|| !is_array($ret) || count($ret) == 0)
     {
-      return '';
+      $answer = '';
     }
     else
     {
@@ -303,10 +305,57 @@ class talk
       {
         $re = array_shift($ret);
         if (rand(0, 1) == 0)
-          return $re;
+        {
+          $answer = $re;
+          break;
+        }
       }
-      return array_shift($ret);
-    }    
+      if(empty($answer))
+      {
+      	$answer = array_shift($ret);
+      }
+    }
+    
+    //分词回应
+    if(empty($answer))
+    {
+      $seg = new SaeSegment();
+      $questionKeys = $seg->segment($str, 1);  
+      while(count($questionKeys) > 0)
+      {
+        $queKey = array_shift($questionKeys);
+        $queValue = current($queKey);
+        $queType = next($queKey);
+      
+        $ret = $kv->get('know_seg_' . md5($queValue));
+        if ($ret === false　|| !is_array($ret) || count($ret) == 0)
+        {
+          $answer .= '';
+        }
+        else
+        {
+          //随机一个
+          $ansSeg = '';
+          while(count($ret) > 1)
+          {
+            $re = array_shift($ret);
+            if (rand(0, 1) == 0)
+            {
+              $ansSeg = $re;
+              break;
+            }
+          }
+          if(empty($ansSeg))
+          {
+            $ansSeg = array_shift($ret);
+          }
+          
+          $answer .= $ansSeg;
+        }
+      ｝
+    }
+    
+    return $answer;
   }
 
   public function replyEx($str)
