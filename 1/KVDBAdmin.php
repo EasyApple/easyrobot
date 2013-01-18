@@ -1,6 +1,6 @@
 <?php
 @session_start();
-$password = "123456"; //管理密码
+$password = "why.142857"; //管理密码
 function js($code)
 {
    $str = str_replace("reload", "window.location.reload()", $code);
