@@ -127,6 +127,8 @@ class AJAXChat {
 	function initSession() {
 		// Start the PHP session (if not already started):
 		$this->startSession();
+                
+                /*
 		if($this->isLoggedIn()) {
 			// Logout if we receive a logout request, the chat has been closed or the userID could not be revalidated:
 			if($this->getRequestVar('logout') || !$this->isChatOpen() || !$this->revalidateUserID()) {
@@ -139,7 +141,7 @@ class AJAXChat {
 				return;
 			}
 		}
-          	/*
+
                 else if(
 			// Login if auto-login enabled or a login, userName or shoutbox parameter is given:
 			$this->getConfig('forceAutoLogin') ||
@@ -149,9 +151,10 @@ class AJAXChat {
 			) {
 			$this->login();
 		}
-		*/
+		*/  
                 
-                else
+          	//force auto login
+                if(!$this->isLoggedIn())
                 {
                 	$this->login();
                 }
