@@ -8,11 +8,12 @@
  */
 
 $lang = array();
-$lang['title'] = 'AJAX Chat';
+$lang['title'] = 'EasyRobot';
 $lang['userName'] = 'Username';
 $lang['password'] = 'Password';
 $lang['login'] = 'Login';
 $lang['logout'] = 'Logout';
+$lang['startChat'] = 'Start Chat';
 $lang['channel'] = 'Channel';
 $lang['style'] = 'Style';
 $lang['language'] = 'Language';
