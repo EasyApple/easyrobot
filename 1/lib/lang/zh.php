@@ -9,9 +9,10 @@
  */
 
 $lang = array();
-$lang['title'] = 'AJAX Chat';
+$lang['title'] = '灵感机器人';
 $lang['userName'] = '用户名';
 $lang['password'] = '密码';
+$lang['startChat'] = '开始聊天';
 $lang['login'] = '登录';
 $lang['logout'] = '退出';
 $lang['channel'] = '频道';
