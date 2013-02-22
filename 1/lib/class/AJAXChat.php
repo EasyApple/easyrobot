@@ -1492,7 +1492,7 @@ class AJAXChat {
 			$mode
 		);
 	}
-	
+
 	function insertCustomMessage($userID, $userName, $userRole, $channelID, $text, $ip=null, $mode=0) {
 		// The $mode parameter is used for socket updates:
 		// 0 = normal messages
