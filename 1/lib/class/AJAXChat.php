@@ -1364,6 +1364,13 @@ class AJAXChat {
 		$text = $this->replaceCustomText($text);
 		
 		$this->insertParsedMessage($text);
+
+		$this->insertChatBotMessage(
+			$this->getChannel(),
+			"Test",
+			null,
+			1);	
+
 	}
 
 	function deleteMessage($messageID) {
