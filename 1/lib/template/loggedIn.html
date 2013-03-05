@@ -110,8 +110,10 @@
 		</div>
 		<div id="logoutChannelContainer">
   			<input type="button" id="logoutButton" value="[LANG]logout[/LANG]" onclick="ajaxChat.logout();"/>
+			<!--
 			<label for="channelSelection">[LANG]channel[/LANG]:</label>
 			<select id="channelSelection" onchange="ajaxChat.switchChannel(this.options[this.selectedIndex].value);">[CHANNEL_OPTIONS/]</select>
+			-->
 			<label for="styleSelection">[LANG]style[/LANG]:</label>
 			<select id="styleSelection" onchange="ajaxChat.setActiveStyleSheet(ajaxChat.getSelectedStyle());">[STYLE_OPTIONS/]</select>
 			<label for="languageSelection">[LANG]language[/LANG]:</label>
@@ -129,6 +131,7 @@
 			<span id="messageLengthCounter">0/[MESSAGE_TEXT_MAX_LENGTH/]</span>
 			<input type="button" id="submitButton" value="[LANG]messageSubmit[/LANG]" onclick="ajaxChat.sendMessage();"/>
 		</div>
+		<!--
 		<div id="emoticonsContainer" dir="ltr"></div>
 		<div id="bbCodeContainer">
 			<input type="button" value="[LANG]bbCodeLabelBold[/LANG]" title="[LANG]bbCodeTitleBold[/LANG]" onclick="ajaxChat.insertBBCode('b');" style="font-weight:bold;"/>
@@ -140,6 +143,7 @@
 			<input type="button" value="[LANG]bbCodeLabelImg[/LANG]" title="[LANG]bbCodeTitleImg[/LANG]" onclick="ajaxChat.insertBBCode('img');"/>
 			<input type="button" value="[LANG]bbCodeLabelColor[/LANG]" title="[LANG]bbCodeTitleColor[/LANG]" onclick="ajaxChat.showHide('colorCodesContainer', null);"/>
 		</div>
+		-->
 		<div id="colorCodesContainer" style="display:none;" dir="ltr"></div>
 		<div id="optionsContainer">
 			<input type="image" src="img/pixel.gif" class="button" id="helpButton" alt="[LANG]toggleHelp[/LANG]" title="[LANG]toggleHelp[/LANG]" onclick="toggleContainer('helpContainer', new Array('onlineListContainer','settingsContainer'));"/>
