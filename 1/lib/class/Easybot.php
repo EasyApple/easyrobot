@@ -68,5 +68,6 @@ class Easybot {
 	function getTestReply($msg) {
 		return $msg;
 	}
+}
 
 ?>
