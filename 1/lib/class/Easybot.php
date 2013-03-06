@@ -71,9 +71,23 @@ class Easybot {
 		*/
 	}
 
-	function getTestReply($msg) {
+	//Replies
+	function getWelcomeInfo($character) {
+		$msg = $character.'你好，很高兴见到你！'
 		return $msg;
 	}
+
+	function getFarewellInfo($characte) {
+		$msg = $character.'再见，跟你聊天很愉快！'
+		return $msg;
+	}
+
+	function getSmartReply($msg) {
+
+
+		return $msg;
+	}
+
 }
 
 ?>
