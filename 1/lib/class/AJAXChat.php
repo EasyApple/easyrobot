@@ -1371,9 +1371,14 @@ class AJAXChat {
 		$this->insertParsedMessage($text);
 
 		//Added By Jack 2013
+		$msgReply = $this->easybot->getSmartReply($text);
+		if(empty($msgReply)) {
+			$msgReply = $this->easybot->getWelcomeInfo($this->getUserName());
+		}
+
 		$this->insertChatBotMessage(
 			$this->getChannel(),
-			$this->easybot->getWelcomeInfo($this->getUserName()),
+			$msgReply,
 			null,
 			1);	
 	}
