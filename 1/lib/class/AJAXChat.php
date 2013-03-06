@@ -1365,9 +1365,10 @@ class AJAXChat {
 		
 		$this->insertParsedMessage($text);
 
+		//Added By Jack 2013
 		$this->insertChatBotMessage(
 			$this->getChannel(),
-			$text,
+			"Test",
 			null,
 			1);	
 	}
