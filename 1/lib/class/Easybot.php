@@ -85,7 +85,7 @@ class Easybot {
 	function getSmartReply($msg) {
 
 
-		return $msg;
+		//return $msg;
 	}
 
 }
