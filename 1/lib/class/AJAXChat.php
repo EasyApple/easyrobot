@@ -1373,7 +1373,7 @@ class AJAXChat {
 		//Added By Jack 2013
 		$this->insertChatBotMessage(
 			$this->getChannel(),
-			$this->easybot->getWelcomInfo($this->getUserName()),
+			$this->easybot->getWelcomeInfo($this->getUserName()),
 			null,
 			1);	
 	}
