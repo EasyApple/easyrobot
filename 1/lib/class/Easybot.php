@@ -84,7 +84,7 @@ class Easybot {
 
 	function getSmartReply($msg) {
 
-		$reply = 'Easybot 基于 Alicebot 智能机器人技术，结合新浪 SAE 中文分词技术，实现智能中文聊天机器人。敬请期待！';
+		$reply = '精彩功能，敬请期待！';
 		return $reply;
 	}
 
