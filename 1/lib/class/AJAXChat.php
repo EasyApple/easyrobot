@@ -54,6 +54,8 @@ class AJAXChat {
 		}
 		$this->_config = &$config;
 
+		//Added By Jack 2013
+		include(AJAX_CHAT_PATH.'lib/class/Easybot.php');
 		$this->easybot = new Easybot();
 
 		// Initialize custom configuration settings:
