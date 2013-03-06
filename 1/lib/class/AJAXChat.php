@@ -10,6 +10,7 @@
 // Ajax Chat backend logic:
 class AJAXChat {
 
+	var $easybot;
 	var $db;
 	var $_config;
 	var $_requestVars;
@@ -52,6 +53,8 @@ class AJAXChat {
 			die();
 		}
 		$this->_config = &$config;
+
+		$this->easybot = new Easybot();
 
 		// Initialize custom configuration settings:
 		$this->initCustomConfig();
@@ -1368,7 +1371,7 @@ class AJAXChat {
 		//Added By Jack 2013
 		$this->insertChatBotMessage(
 			$this->getChannel(),
-			"Test",
+			$this->easybot->getTestReply($text),
 			null,
 			1);	
 	}
