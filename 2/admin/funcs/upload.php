@@ -40,7 +40,7 @@ function parseAIML()
 
 	$s = new SaeStorage();
 	//if(move_uploaded_file($_FILES['aimlfile']['tmp_name'], $target_path)) 
-	if($s->upload( 'easybot' , $target_path , $_FILES['aimlfile']['tmp_name'] )
+	if($s->upload( 'easybot' , $target_path , $_FILES['aimlfile']['tmp_name'] ))
 	{
     	$msg = "The file ".  basename( $_FILES['aimlfile']['name']). " has been uploaded";
 	} 
