@@ -41,8 +41,7 @@ if( (isset($_POST['action'])) && (trim($_POST['chat'])!=""))
 		{
 			$look = "RANDOM PICKUP LINE";
 		}
-	
-		echo "<br/>INPUT: $look";
+
 		
 		if($look=="cleardefaults") //if this is the input then just clear all the bot memory
 		{
@@ -140,14 +139,15 @@ if( (isset($_POST['action'])) && (trim($_POST['chat'])!=""))
 						$res .= "<div class=\"demouser\">You: ".stripslashes(urldecode($response_Array['input'][$i]))."</div>";
    						$res .= "<div class=\"demobot\">Bot: ".stripslashes(urldecode($response_Array['that'][$i]))."</div>";
 
-   						echo "<br/>INPUT: $res";
+   						echo "<br/>RES: $res";
+   						$temp1 = stripslashes(urldecode($response_Array['input'][$i]));
+   						$temp2 = stripslashes(urldecode($response_Array['that'][$i]));
+   						echo "<br/>TEMP: $temp1 $temp2";
 					}
 					else
 					{
 						$res .= "<div class=\"demouser\">&nbsp;</div>";
 						$res .= "<div class=\"demobot\">&nbsp;</div>";
-
-						echo "<br/>INPUT: $res";
 					}
 				}
 				
