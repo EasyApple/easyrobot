@@ -23,7 +23,13 @@ $dbp = SAE_MYSQL_PASS; //database password
 function openDB()
 {
 	global $dbh,$dbp,$dbu,$dbn;
-	$conn = mysql_connect($dbh,$dbu,$dbp,$dbn)or die(mysql_error());
+	//$conn = mysql_connect($dbh,$dbu,$dbp,$dbn)or die(mysql_error());
+
+	$conn = mysql_connect(SAE_MYSQL_HOST_M.':'.SAE_MYSQL_PORT,SAE_MYSQL_USER,SAE_MYSQL_PASS);
+	if (!$conn)
+		die ("<b>Cannot connect to database, check if username, password and host are correct.</b>");
+	$success = mysql_select_db(SAE_MYSQL_DB,$conn);
+
 	return $conn;
 }
 
