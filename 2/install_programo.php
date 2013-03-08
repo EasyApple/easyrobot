@@ -18,7 +18,12 @@ $aimlsql_path = "admin/aimlsql/";
 function dbopen()
 {
 	global $dbn,$dbu,$dbp,$dbh;
-	$dbconn = mysql_connect($dbh,$dbu,$dbp,$dbn);
+	//$dbconn = mysql_connect($dbh,$dbu,$dbp,$dbn);
+
+	$dbconn = mysql_connect(SAE_MYSQL_HOST_M.':'.SAE_MYSQL_PORT,SAE_MYSQL_USER,SAE_MYSQL_PASS);
+	if (!$link)
+		die ("<b>Cannot connect to database, check if username, password and host are correct.</b>");
+	$success = mysql_select_db(SAE_MYSQL_DB,$link);
 	return $dbconn;
 }
 
