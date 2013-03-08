@@ -49,7 +49,7 @@ function checkprivs()
 {
 	$msg="";
 	//$ourFileName = "aiml/testFile.txt";
-	$ourFileName = "http://easyrobot-easybot.stor.sinaapp.com/aiml/testFile.txt"
+	$ourFileName = "http://easyrobot-easybot.stor.sinaapp.com/aiml/testFile.txt";
 	$ourFileHandle = fopen($ourFileName, 'w');
 	if(!$ourFileHandle)
 	{
