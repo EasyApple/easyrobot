@@ -11,7 +11,8 @@
 //-----------------------------------------------------------------------------------------------
 include("bot/config.php");
 error_reporting(E_ALL);
-$target_path = "admin/aiml/";
+//$target_path = "admin/aiml/";
+$target_path = "http://easyrobot-easybot.stor.sinaapp.com/aiml/";
 $aimlsql_path = "admin/aimlsql/"; 
 
 
