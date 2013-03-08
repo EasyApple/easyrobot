@@ -60,7 +60,7 @@ function checkprivs()
 	{
 		fclose($ourFileHandle);
 		$myFile = "http://easyrobot-easybot.stor.sinaapp.com/aiml/testFile.txt";
-		$s->delete( 'easybot' , 'aiml/testFile.txt' );
+		$storage->delete( 'easybot' , 'aiml/testFile.txt' );
 		//unlink($myFile);
 	}
 	
