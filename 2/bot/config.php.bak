@@ -23,10 +23,10 @@ elseif(function_exists("date_default_timezone_set"))
 //---------------------------------------------------------------
 
 //---------------------------------------------------------------
-$dbh = "localhost"; //server location (localhost should be ok for this)
-$dbn = ""; //database name/prefix
-$dbu = ""; //database username
-$dbp = ""; //database password
+$dbh = SAE_MYSQL_HOST_M; //server location (localhost should be ok for this)
+$dbn = SAE_MYSQL_DB; //database name/prefix
+$dbu = SAE_MYSQL_USER; //database username
+$dbp = SAE_MYSQL_PASS; //database password
 
 //---------------------------------------------------------------
 

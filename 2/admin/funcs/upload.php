@@ -33,16 +33,17 @@ function parseAIML()
 	global $debugmode, $file, $g_tagName, $aiml_sql, $topic_sql, $pattern_sql, $that_sql, $template_sql, $file, $cat_counter, $insert_sql, $dbn;
 	$dbconn = openDB();
 	
+	//Edit By Jack 20130308
 	$file = $_FILES['aimlfile']['name'];
 	$target_path = "aiml/";
-	$full_path = "http://easyrobot-easybot.stor.sinaapp.com/aiml/" . $file;
-	$target_path = $target_path . basename( $_FILES['aimlfile']['name']); 
+	$target_path = $target_path . basename( $file); 
+	$full_path = "http://easyrobot-easybot.stor.sinaapp.com/aiml/" . basename ($file);
 
 	$s = new SaeStorage();
 	//if(move_uploaded_file($_FILES['aimlfile']['tmp_name'], $target_path)) 
-	if($s->upload( 'easybot' , $target_path , $_FILES['aimlfile']['tmp_name'] ))
+	if($s->upload( 'easybot' , $target_path , $file ))
 	{
-    	$msg = "The file ".  basename( $_FILES['aimlfile']['name']). " has been uploaded";
+    	$msg = "The file ".  basename( $file). " has been uploaded";
 	} 
 	else
 	{

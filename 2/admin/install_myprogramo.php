@@ -49,6 +49,8 @@ function checkprivs()
 {
 	$storage = new SaeStorage();
 	$msg="";
+
+	//Edit By Jack 20130308
 	//$ourFileName = "aiml/testFile.txt";
 	$ourFileName = "http://easyrobot-easybot.stor.sinaapp.com/aiml/testFile.txt";
 	$ourFileHandle = fopen($ourFileName, 'w');
