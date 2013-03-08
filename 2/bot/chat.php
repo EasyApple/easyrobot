@@ -42,7 +42,7 @@ if( (isset($_POST['action'])) && (trim($_POST['chat'])!=""))
 			$look = "RANDOM PICKUP LINE";
 		}
 	
-		echo "<br/>The AIML installer broke on $look";
+		echo "<br/>INPUT: $look";
 		
 		if($look=="cleardefaults") //if this is the input then just clear all the bot memory
 		{
@@ -85,6 +85,8 @@ if( (isset($_POST['action'])) && (trim($_POST['chat'])!=""))
 			$line = trim($look);
 			if($line!="")
 			{
+
+				echo "<br/>INPUT: $line";
 				
 				if(strpos($line, ".")=== false)
 				{
