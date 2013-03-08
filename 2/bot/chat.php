@@ -139,6 +139,8 @@ if( (isset($_POST['action'])) && (trim($_POST['chat'])!=""))
 
 						$res .= "<div class=\"demouser\">You: ".stripslashes(urldecode($response_Array['input'][$i]))."</div>";
    						$res .= "<div class=\"demobot\">Bot: ".stripslashes(urldecode($response_Array['that'][$i]))."</div>";
+
+   						echo "<br/>INPUT: $res";
 					}
 					else
 					{
