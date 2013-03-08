@@ -23,7 +23,7 @@ function dbopen()
 	$dbconn = mysql_connect(SAE_MYSQL_HOST_M.':'.SAE_MYSQL_PORT,SAE_MYSQL_USER,SAE_MYSQL_PASS);
 	if (!$dbconn)
 		die ("<b>Cannot connect to database, check if username, password and host are correct.</b>");
-	$success = mysql_select_db(SAE_MYSQL_DB,$link);
+	$success = mysql_select_db(SAE_MYSQL_DB,$dbconn);
 	return $dbconn;
 }
 
