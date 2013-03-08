@@ -58,7 +58,7 @@ function checkprivs()
 	else
 	{
 		fclose($ourFileHandle);
-		$myFile = "aiml/testFile.txt";
+		$myFile = "http://easyrobot-easybot.stor.sinaapp.com/aiml/testFile.txt";
 		unlink($myFile);
 	}
 	
