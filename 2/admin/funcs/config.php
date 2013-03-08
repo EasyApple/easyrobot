@@ -9,10 +9,15 @@
 //db config file
 //you might want to make thise different to the program-o chatbot user as you need privs to insert, delete, create tables.
 
-$dbh = "localhost"; //server location (localhost should be ok for this)
-$dbn = ""; //database name/prefix
-$dbu = ""; //database username
-$dbp = ""; //database password
+//$dbh = "localhost"; //server location (localhost should be ok for this)
+//$dbn = ""; //database name/prefix
+//$dbu = ""; //database username
+//$dbp = ""; //database password
+
+$dbh = SAE_MYSQL_HOST_M; //server location (localhost should be ok for this)
+$dbn = SAE_MYSQL_DB; //database name/prefix
+$dbu = SAE_MYSQL_USER; //database username
+$dbp = SAE_MYSQL_PASS; //database password
 
 
 function openDB()

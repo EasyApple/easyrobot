@@ -28,7 +28,7 @@ $location = "live";
 //if you wish the program to email you you errors instead of displaying them set the flag below to 1 if not then set to 0
 $mailerrors = 0;
 //if you have chosen to report errors to your email address set the address here
-$debugemail = "youremail@yourdomain.com";
+$debugemail = "jack@easyapple.net";
 //to report on long scripts set the seconds here and any script that take longer than nSeconds will be emailed if mailerrors (flag=1)
 $longScriptSeconds = 7;
 
