@@ -126,21 +126,19 @@ if( (isset($_POST['action'])) && (trim($_POST['chat'])!=""))
 			if($response_Array['who'] == "human")
 			{
 				
-				
-				
 				for($i=$convoLines;$i>=0;$i--)
 				{
 					if(isset($response_Array['input'][$i]))
 					{
-						//echo "<br/>INPUT: $response_Array['input'][$i]";
 
 						$res .= "<div class=\"demouser\">You: ".stripslashes(urldecode($response_Array['input'][$i]))."</div>";
    						$res .= "<div class=\"demobot\">Bot: ".stripslashes(urldecode($response_Array['that'][$i]))."</div>";
 
-   						echo "<br/>RES: $res";
+   						//echo "<br/>RES: $res";
    						$temp1 = stripslashes(urldecode($response_Array['input'][$i]));
    						$temp2 = stripslashes(urldecode($response_Array['that'][$i]));
-   						echo "<br/>TEMP: $temp1 $temp2";
+   						echo "<br/>TEMP1: $temp1";
+   						echo "<br/>TEMP1: $temp2";
    						echo "<br/>END";
 					}
 					else
