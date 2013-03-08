@@ -84,8 +84,6 @@ if( (isset($_POST['action'])) && (trim($_POST['chat'])!=""))
 			$line = trim($look);
 			if($line!="")
 			{
-
-				echo "<br/>INPUT: $line";
 				
 				if(strpos($line, ".")=== false)
 				{
@@ -143,6 +141,7 @@ if( (isset($_POST['action'])) && (trim($_POST['chat'])!=""))
    						$temp1 = stripslashes(urldecode($response_Array['input'][$i]));
    						$temp2 = stripslashes(urldecode($response_Array['that'][$i]));
    						echo "<br/>TEMP: $temp1 $temp2";
+   						echo "<br/>END";
 					}
 					else
 					{
