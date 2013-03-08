@@ -137,8 +137,9 @@ if( (isset($_POST['action'])) && (trim($_POST['chat'])!=""))
    						//echo "<br/>RES: $res";
    						$temp1 = stripslashes(urldecode($response_Array['input'][$i]));
    						$temp2 = stripslashes(urldecode($response_Array['that'][$i]));
+   						$temp2 = stripslashes(urldecode($response_Array['random'][$i]));
    						echo "<br/>TEMP1: $temp1";
-   						echo "<br/>TEMP1: $temp2";
+   						echo "<br/>TEMP2: $temp2";
    						echo "<br/>END";
 					}
 					else
