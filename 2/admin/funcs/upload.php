@@ -35,7 +35,7 @@ function parseAIML()
 	
 	$file = $_FILES['aimlfile']['name'];
 	$target_path = "aiml/";
-	$full_path = "aiml/" . $file;
+	$full_path = "http://easyrobot-easybot.stor.sinaapp.com/aiml/" . $file;
 	$target_path = $target_path . basename( $_FILES['aimlfile']['name']); 
 
 	$s = new SaeStorage();
