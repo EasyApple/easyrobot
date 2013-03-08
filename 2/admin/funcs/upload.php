@@ -34,11 +34,13 @@ function parseAIML()
 	$dbconn = openDB();
 	
 	$file = $_FILES['aimlfile']['name'];
-	$target_path = "../aiml/";
-	$full_path = "../aiml/" . $file;
+	$target_path = "aiml/";
+	$full_path = "aiml/" . $file;
 	$target_path = $target_path . basename( $_FILES['aimlfile']['name']); 
 
-	if(move_uploaded_file($_FILES['aimlfile']['tmp_name'], $target_path)) 
+	$s = new SaeStorage();
+	//if(move_uploaded_file($_FILES['aimlfile']['tmp_name'], $target_path)) 
+	if($s->upload( 'easybot' , $target_path , $_FILES['aimlfile']['tmp_name'] )
 	{
     	$msg = "The file ".  basename( $_FILES['aimlfile']['name']). " has been uploaded";
 	} 
