@@ -11,11 +11,11 @@
 //-----------------------------------------------------------------------------------------------
 //error handler to get the errors emailed to you for debugging
 //set_error_handler("myHandler"); //comment this out if you do not want to be emailed error messages your bot makes...
-error_reporting(1); //uncomment this if you want to hide all errors your bot code may make from the user
+error_reporting(0); //uncomment this if you want to hide all errors your bot code may make from the user
 //error_reporting(E_ALL); //uncomment this if you want to show all errors to the user
 
 //debuglevels
-$debugMode = 3; // special turn on and off to test this and that
+$debugMode = 0; // special turn on and off to test this and that
 //$debugMode = 0; // show nothing
 //$debugMode = 1; // show everything...
 //$debugMode = 2; // show sql errors
