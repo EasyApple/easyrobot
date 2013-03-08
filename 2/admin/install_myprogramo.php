@@ -47,6 +47,7 @@ $step_four = "
 
 function checkprivs()
 {
+	$storage = new SaeStorage();
 	$msg="";
 	//$ourFileName = "aiml/testFile.txt";
 	$ourFileName = "http://easyrobot-easybot.stor.sinaapp.com/aiml/testFile.txt";
@@ -59,7 +60,8 @@ function checkprivs()
 	{
 		fclose($ourFileHandle);
 		$myFile = "http://easyrobot-easybot.stor.sinaapp.com/aiml/testFile.txt";
-		unlink($myFile);
+		$s->delete( 'easybot' , 'aiml/testFile.txt' );
+		//unlink($myFile);
 	}
 	
 	if($msg == "")
