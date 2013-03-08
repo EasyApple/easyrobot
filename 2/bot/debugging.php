@@ -15,7 +15,7 @@ error_reporting(1); //uncomment this if you want to hide all errors your bot cod
 //error_reporting(E_ALL); //uncomment this if you want to show all errors to the user
 
 //debuglevels
-$debugMode = 1; // special turn on and off to test this and that
+$debugMode = 3; // special turn on and off to test this and that
 //$debugMode = 0; // show nothing
 //$debugMode = 1; // show everything...
 //$debugMode = 2; // show sql errors
