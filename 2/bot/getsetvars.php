@@ -24,7 +24,6 @@ function setGossip($response_Array)
 	{
 		// initialise
 		global $dbconn,$debugmode,$dbn;
-		echo "<br/>DB: $dbconn";
 		$buildGossip = "";
 		$tmp = "";
 		
