@@ -268,15 +268,18 @@ endScript;
         $file = $_FILES['aimlfile']['name'];
         $target_path = "aiml/";
         $target_path = $target_path . basename( $file); 
-        $full_path = "http://easyrobot-easybot.stor.sinaapp.com/aiml/" . basename ($file);
+        
         $s = new SaeStorage();
         if($s->upload( 'easybot' , $target_path , $_FILES['aimlfile']['tmp_name'] ))
         {
           $msg = "The file ".  basename( $file). " has been uploaded";
+          $full_path = $s->getUrl( 'easybot' , $target_path );
+          $contents = $s->read( 'easybot' , $target_path);
+          
           if ($_FILES['aimlfile']['type'] == 'application/zip')
            return processZip($full_path);
           else
-           return parseAIML($full_path,file_get_contents($full_path));
+           return parseAIML($full_path,$contents);
         } 
         else
         {
