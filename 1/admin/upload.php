@@ -8,9 +8,10 @@
   //for more information and support please visit www.program-o.com
   //-----------------------------------------------------------------------------------------------
   // upload.php
+  //Edit By Jack 20130309
   ini_set('memory_limit', '128M');
   ini_set('max_execution_time', '0');
-  ini_set('display_errors', false);
+  ini_set('display_errors', true);
   ini_set('log_errors', true);
   ini_set('error_log', _ADMIN_PATH_ . 'upload.error.log');
   libxml_use_internal_errors(true);
@@ -244,6 +245,7 @@ endScript;
       }
       else
       {
+        /*
       // Create uploads directory if necessary
         if (!file_exists('uploads'))
           mkdir('uploads');
@@ -257,6 +259,26 @@ endScript;
         else
         {
           $msg = 'There was an error moving the file.';
+        }
+        */
+
+        //Edit By Jack 20130309
+        $file = $_FILES['aimlfile']['name'];
+        $target_path = "aiml/";
+        $target_path = $target_path . basename( $file); 
+        $full_path = "http://easyrobot-easybot.stor.sinaapp.com/aiml/" . basename ($file);
+        $s = new SaeStorage();
+        if($s->upload( 'easybot' , $target_path , $_FILES['aimlfile']['tmp_name'] ))
+        {
+          $msg = "The file ".  basename( $file). " has been uploaded";
+          if ($_FILES['aimlfile']['type'] == 'application/zip')
+           return processZip($full_path);
+          else
+           return parseAIML($full_path,file_get_contents($full_path));
+        } 
+        else
+        {
+          $msg = "There was an error uploading the file, please try again!";
         }
     }
     //die($msg);
