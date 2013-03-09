@@ -104,10 +104,13 @@ function Save() {
   /*
   $conn = mysql_connect($myPostVars['dbh'], $myPostVars['dbu'], $myPostVars['dbp']) or install_error('Could not connect to the database!',mysql_error(), $sql);
   $dbn = $myPostVars['dbn'];
-   */
+  */
 
-  $conn = mysql_connect(SAE_MYSQL_HOST_M, SAE_MYSQL_USER, SAE_MYSQL_PASS) or install_error('Could not connect to the database!',mysql_error(), $sql);
+  $conn = mysql_connect(SAE_MYSQL_HOST_M.':'.SAE_MYSQL_PORT,SAE_MYSQL_USER,SAE_MYSQL_PASS);
+  if (!$conn)
+    die ("<b>Cannot connect to database, check if username, password and host are correct.</b>");
   $dbn = SAE_MYSQL_DB;
+  //Jack Edit Ending
 
   $db = mysql_select_db($dbn,$conn) or install_error("Can't select the database $dbn!", mysql_error(), "use $dbn");
   $result = mysql_query($sql,$conn) or install_error('Unknown database error!',mysql_error(), $sql);
