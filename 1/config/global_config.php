@@ -87,11 +87,11 @@
     $dbh    = SAE_MYSQL_HOST_M;  # dev remote server location
     $dbPort = SAE_MYSQL_PORT;    # dev database name/prefix
     $dbn    = SAE_MYSQL_DB;    # dev database name/prefix
-    $dbu    = AE_MYSQL_USER;       # dev database username
+    $dbu    = SAE_MYSQL_USER;       # dev database username
     $dbp    = SAE_MYSQL_PASS;  # dev database password
 
     //these are the admin DB settings in case you want make the admin a different db user with more privs
-    $adm_dbu = AE_MYSQL_USER;
+    $adm_dbu = SAE_MYSQL_USER;
     $adm_dbp = SAE_MYSQL_PASS;
 
     //------------------------------------------------------------------------
