@@ -80,6 +80,7 @@
     $convoArr = check_set_user($convoArr);
     $convoArr = check_set_format($convoArr);
     $convoArr['time_start'] = $time_start;
+    return;
     //if totallines = 0 then this is new user
     if (isset ($convoArr['conversation']['totallines']))
     {
@@ -121,7 +122,7 @@
       $time_end = microtime(true);
       $time = $time_end - $time_start;
       //runDebug(__FILE__, __FUNCTION__, __LINE__, "Script took $time seconds", 2);
-      //return $convoArr['send_to_user'];
+      return $convoArr['send_to_user'];
     }
     else
     {
