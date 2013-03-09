@@ -121,7 +121,10 @@
      * 2=error+general+sql,
      * 3=everything
      */
-    $default_debugshow = '[default_debugshow]';
+
+    //Edit By Jack 20130309
+    //$default_debugshow = '[default_debugshow]';
+    $default_debugshow = 0;
 
     /*
      * $default_debugmode - How to show the debug data
