@@ -66,6 +66,7 @@
   //if the user has said something
   if ((isset ($_REQUEST['say'])) && (trim($_REQUEST['say']) != ""))
   {
+    return;
     $say = trim($_REQUEST['say']);
     //add any pre-processing addons
     $say = run_pre_input_addons($convoArr, $say);
