@@ -128,7 +128,7 @@ endScript;
     try
     {
       $msg = "$fn,$aimlContent<br />\n";
-      
+
       libxml_use_internal_errors(true);
       $xml = new DOMDocument();
       $xml->loadXML($aimlFile);
@@ -213,7 +213,7 @@ endScript;
     catch (Exception $e)
     {
       $success = false;
-      $msg = "There was a problem adding file $fileName to the database. Please validate the file and try again.<br >\n";
+      //$msg = "There was a problem adding file $fileName to the database. Please validate the file and try again.<br >\n";
       $msg = libxml_display_errors($msg);
     }
     return $msg;
