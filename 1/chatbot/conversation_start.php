@@ -121,11 +121,11 @@
       $time_end = microtime(true);
       $time = $time_end - $time_start;
       //runDebug(__FILE__, __FUNCTION__, __LINE__, "Script took $time seconds", 2);
-      return $convoArr['send_to_user'];
+      //return $convoArr['send_to_user'];
     }
     else
     {
-      //echo $convoArr['send_to_user'];
+      echo $convoArr['send_to_user'];
     }
   }
   else
