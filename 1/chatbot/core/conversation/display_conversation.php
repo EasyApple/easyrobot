@@ -16,12 +16,8 @@
  * @return array $orderedRows - a list of conversation line
 **/
 
-//Edit By Jack 20130309
-//Hide All runDebug
-
 function get_conversation_to_display($convoArr)
 {
-	return;
 	global $con,$dbn, $bot_name;
   $user_id = $convoArr['conversation']['user_id'];
   $bot_id = $convoArr['conversation']['bot_id'];
@@ -80,8 +76,6 @@ function get_conversation_to_display($convoArr)
 **/	
 function get_conversation($convoArr)
 {
-	return;
-
 	$conversation = get_conversation_to_display($convoArr);
 	
 	runDebug( __FILE__, __FUNCTION__, __LINE__, "Processing conversation as ".$convoArr['conversation']['format'],4);
@@ -110,8 +104,6 @@ function get_conversation($convoArr)
 **/	
 function get_html($convoArr,$conversation)
 {
-	return;
-
 	$conversation_lines = $convoArr['conversation']['conversation_lines'];
 	$show= "";
 	$user_name = $convoArr['conversation']['user_name'];
@@ -140,8 +132,6 @@ function get_html($convoArr,$conversation)
 **/	
 function get_json($convoArr,$conversation)
 {
-	return;
-
 	$conversation_lines = $convoArr['conversation']['conversation_lines'];
 	$show_json = array();
 	$i=0;
@@ -175,8 +165,6 @@ function get_json($convoArr,$conversation)
 **/	
 function get_xml($convoArr,$conversation)
 {
-	return;
-	
 	$user_name = $convoArr['conversation']['user_name'];
 	$user_id   = $convoArr['conversation']['user_id'];
 	$bot_name  = $convoArr['conversation']['bot_name'];
