@@ -80,7 +80,6 @@
     $convoArr = check_set_user($convoArr);
     $convoArr = check_set_format($convoArr);
     $convoArr['time_start'] = $time_start;
-    return;
     //if totallines = 0 then this is new user
     if (isset ($convoArr['conversation']['totallines']))
     {
@@ -100,6 +99,7 @@
       $convoArr['conversation']['totallines'] = 0;
       $convoArr = get_user_id($convoArr);
     }
+    return;
     $convoArr['aiml'] = array();
     //add the latest thing the user said
     $convoArr = add_new_conversation_vars($say, $convoArr);
