@@ -113,7 +113,8 @@
 
     //Added By Jack 20130309 
     //Hide Debug Info
-    
+    return;
+
     runDebug(__FILE__, __FUNCTION__, __LINE__, "Conversation Ending", 4);
     $convoArr = handleDebug($convoArr);
     runDebug(__FILE__, __FUNCTION__, __LINE__, "Returning " . $convoArr['conversation']['format'], 4);
