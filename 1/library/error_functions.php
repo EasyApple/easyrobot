@@ -74,7 +74,6 @@ function sqlErrorHandler( $sql, $error, $erno, $file, $function, $line){
 **/
 function runDebug($fileName, $functionName, $line, $info, $level=0) {
   
-  /*
 	global $debugArr,$srai_iterations,$debuglevel,$quickdebug,$writetotemp;
 	if(empty($functionName)) $functionName = "Called outside of function";
 	//only log the debug info if the info level is equal to or less than the chosen level
@@ -109,7 +108,7 @@ function runDebug($fileName, $functionName, $line, $info, $level=0) {
 			writefile_debug($debugArr);
 		}
 	}
-	*/
+	
 	//return $debugArr;
 }
 
