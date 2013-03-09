@@ -211,7 +211,7 @@ endScript;
     catch (Exception $e)
     {
       $success = false;
-      $msg = "There was a problem adding file $fileName to the database. Please validate the file and try again.<br >\n";
+      $msg = "There was a problem adding file $fileName to the database. Please validate the file and try again.($e)<br >\n";
       $msg = libxml_display_errors($msg);
     }
     return $msg;
