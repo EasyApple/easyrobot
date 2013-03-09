@@ -111,16 +111,16 @@
     $convoArr = run_post_response_useraddons($convoArr);
     //return the values to display
     $display = $convoArr['send_to_user'];
-    runDebug(__FILE__, __FUNCTION__, __LINE__, "Conversation Ending", 4);
+    //runDebug(__FILE__, __FUNCTION__, __LINE__, "Conversation Ending", 4);
     $convoArr = handleDebug($convoArr);
-    runDebug(__FILE__, __FUNCTION__, __LINE__, "Returning " . $convoArr['conversation']['format'], 4);
+    //runDebug(__FILE__, __FUNCTION__, __LINE__, "Returning " . $convoArr['conversation']['format'], 4);
     if ($convoArr['conversation']['format'] == "html")
     {
     //TODO what if it is ajax call
       $time_start = $convoArr['time_start'];
       $time_end = microtime(true);
       $time = $time_end - $time_start;
-      runDebug(__FILE__, __FUNCTION__, __LINE__, "Script took $time seconds", 2);
+      //runDebug(__FILE__, __FUNCTION__, __LINE__, "Script took $time seconds", 2);
       return $convoArr['send_to_user'];
     }
     else
@@ -130,11 +130,11 @@
   }
   else
   {
-    runDebug(__FILE__, __FUNCTION__, __LINE__, "Conversation intialised waiting user", 2);
+    //runDebug(__FILE__, __FUNCTION__, __LINE__, "Conversation intialised waiting user", 2);
   }
-  runDebug(__FILE__, __FUNCTION__, __LINE__, "Closing Database", 2);
+  //runDebug(__FILE__, __FUNCTION__, __LINE__, "Closing Database", 2);
   $time_end = microtime(true);
   $time = $time_end - $time_start;
-  runDebug(__FILE__, __FUNCTION__, __LINE__, "Script took $time seconds", 2);
+  //runDebug(__FILE__, __FUNCTION__, __LINE__, "Script took $time seconds", 2);
 
 ?>
