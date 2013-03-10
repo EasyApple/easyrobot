@@ -73,7 +73,6 @@
     runDebug(__FILE__, __FUNCTION__, __LINE__, "Details:\nUser say: " . $_REQUEST['say'] . "\nConvo id: " . $_REQUEST['convo_id'] . "\nBot id: " . $_REQUEST['bot_id'] . "\nFormat: " . $_REQUEST['format'], 2);
     //get the stored vars
     $convoArr = read_from_session();
-    echo $convoArr['send_to_user'];
     //now overwrite with the recieved data
     $convoArr = check_set_bot($convoArr);
     $convoArr = check_set_convo_id($convoArr);
@@ -111,7 +110,7 @@
     $convoArr = run_post_response_useraddons($convoArr);
     //return the values to display
     $display = $convoArr['send_to_user'];
-    //echo $convoArr['send_to_user'];
+    echo $convoArr['send_to_user'];
 
     //Added By Jack 20130309 
     //Hide Debug Info
