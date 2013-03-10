@@ -360,6 +360,14 @@ class talk
 
   public function replyEx($str)
   {
+    //Easybot
+    require_once ('gui/plain/index.php');
+    session_start();
+    //TODO WHICH ONE IS IT?
+    $_POST['input'] = $str;
+    $answer = $_REQUEST['say'];
+    return $answer;
+
     //小i机器人
     $post_data = array ('requestContent=' . $str);
     $post_data = implode ( '&', $post_data );
