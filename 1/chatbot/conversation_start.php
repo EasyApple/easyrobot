@@ -101,7 +101,6 @@
     $convoArr['aiml'] = array();
     //add the latest thing the user said
     $convoArr = add_new_conversation_vars($say, $convoArr);
-     echo $convoArr['send_to_user'];
     //parse the aiml
     $convoArr = make_conversation($convoArr);
     $convoArr = log_conversation($convoArr);
@@ -111,7 +110,6 @@
     $convoArr = run_post_response_useraddons($convoArr);
     //return the values to display
     $display = $convoArr['send_to_user'];
-    //echo $convoArr['send_to_user'];
 
     //Added By Jack 20130309 
     //Hide Debug Info
