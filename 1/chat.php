@@ -5,13 +5,6 @@ $wechatObj = new wechatCallbackapiTest();
 //$wechatObj->valid();
 $wechatObj->responseMsg();
 
-//Easybot
-  $display = "";
-  $thisFile = __FILE__;
-  require_once ('../../config/global_config.php');
-  require_once ('../chatbot/conversation_start.php');
-
-
 class wechatCallbackapiTest
 {
   public function valid()
@@ -367,35 +360,6 @@ class talk
 
   public function replyEx($str)
   {
-    //Easybot
-    $display = 'Test';
-    if (isset ($_REQUEST['bot_id']))
-    {
-      $bot_id = $_REQUEST['bot_id'];
-    }
-    else
-    {
-      $bot_id = 1;
-    }
-    if (isset ($_REQUEST['convo_id']))
-    {
-      $convo_id = $_REQUEST['convo_id'];
-    }
-    else
-    {
-    //session started in the conversation_start.php
-      $convo_id = session_id();
-    }
-    if (isset ($_REQUEST['format']))
-    {
-      $format = $_REQUEST['format'];
-    }
-    else
-    {
-      $format = "html";
-    }
-    return $display;
-
     //小i机器人
     $post_data = array ('requestContent=' . $str);
     $post_data = implode ( '&', $post_data );
