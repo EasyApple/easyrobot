@@ -69,6 +69,7 @@
     $say = trim($_REQUEST['say']);
     //add any pre-processing addons
     $say = run_pre_input_addons($convoArr, $say);
+    echo $say;
     #die('say = ' . $say);
     runDebug(__FILE__, __FUNCTION__, __LINE__, "Details:\nUser say: " . $_REQUEST['say'] . "\nConvo id: " . $_REQUEST['convo_id'] . "\nBot id: " . $_REQUEST['bot_id'] . "\nFormat: " . $_REQUEST['format'], 2);
     //get the stored vars
