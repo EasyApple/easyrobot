@@ -111,7 +111,7 @@
     $convoArr = run_post_response_useraddons($convoArr);
     //return the values to display
     $display = $convoArr['send_to_user'];
-    echo $convoArr['send_to_user'];
+    //echo $convoArr['send_to_user'];
 
     //Added By Jack 20130309 
     //Hide Debug Info
