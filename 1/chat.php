@@ -4,7 +4,6 @@ define("TOKEN","easychat");
 $wechatObj = new wechatCallbackapiTest();
 //$wechatObj->valid();
 $wechatObj->responseMsg();
-
 require_once ('gui/plain/index.php');
 
 class wechatCallbackapiTest
@@ -367,7 +366,7 @@ class talk
     session_start();
     //TODO WHICH ONE IS IT?
     $_POST['input'] = $str;
-    $answer = $display;
+    $answer = $_REQUEST['say'];
     return $answer;
 
     //小i机器人
