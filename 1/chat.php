@@ -5,6 +5,8 @@ $wechatObj = new wechatCallbackapiTest();
 //$wechatObj->valid();
 $wechatObj->responseMsg();
 
+require_once ('gui/plain/index.php');
+
 class wechatCallbackapiTest
 {
   public function valid()
@@ -361,7 +363,7 @@ class talk
   public function replyEx($str)
   {
     //Easybot
-    require_once ('gui/plain/index.php');
+
     session_start();
     //TODO WHICH ONE IS IT?
     $_POST['input'] = $str;
