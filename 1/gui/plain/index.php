@@ -48,9 +48,10 @@
 		<link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" />
 
 		  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-		<title>Program O AIML PHP Chatbot</title>
+    //Edit By Jack 20130310
+		<title>EasyRobot 灵感机器人</title>
 		<meta name="Description" content="A Free Open Source AIML PHP MySQL Chatbot called Program-O. Version2" />
-		<meta name="keywords" content="Open Source, AIML, PHP, MySQL, Chatbot, Program-O, Version2" />
+		<meta name="keywords" content="AIML, PHP, MySQL, Chatbot, EasyRobot, Easybot, 灵感机器人, 聊天机器人, 灵感水手, SAE, 中文" />
 	</head>
 	<body onload="document.getElementById('input').focus()">
 	<?php echo $display;?>
