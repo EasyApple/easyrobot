@@ -69,13 +69,12 @@
     $say = trim($_REQUEST['say']);
     //add any pre-processing addons
     $say = run_pre_input_addons($convoArr, $say);
-    echo $say;
     echo $convoArr;
     #die('say = ' . $say);
     runDebug(__FILE__, __FUNCTION__, __LINE__, "Details:\nUser say: " . $_REQUEST['say'] . "\nConvo id: " . $_REQUEST['convo_id'] . "\nBot id: " . $_REQUEST['bot_id'] . "\nFormat: " . $_REQUEST['format'], 2);
     //get the stored vars
     $convoArr = read_from_session();
-    echo $convoArr;
+    echo $convoArr['send_to_user'];
     //now overwrite with the recieved data
     $convoArr = check_set_bot($convoArr);
     $convoArr = check_set_convo_id($convoArr);
@@ -106,17 +105,11 @@
     $convoArr = add_new_conversation_vars($say, $convoArr);
     //parse the aiml
     $convoArr = make_conversation($convoArr);
-    echo $convoArr;
     $convoArr = log_conversation($convoArr);
-    echo $convoArr;
     $convoArr = log_conversation_state($convoArr);
-    echo $convoArr;
     $convoArr = write_to_session($convoArr);
-    echo $convoArr;
     $convoArr = get_conversation($convoArr);
-    echo $convoArr;
     $convoArr = run_post_response_useraddons($convoArr);
-    echo $convoArr;
     //return the values to display
     $display = $convoArr['send_to_user'];
     echo $convoArr['send_to_user'];
