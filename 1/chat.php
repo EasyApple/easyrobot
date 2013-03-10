@@ -368,6 +368,7 @@ class talk
   public function replyEx($str)
   {
     //Easybot
+    $display = 'Test';
     if (isset ($_REQUEST['bot_id']))
     {
       $bot_id = $_REQUEST['bot_id'];
