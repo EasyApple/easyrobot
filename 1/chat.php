@@ -365,7 +365,7 @@ class talk
     session_start();
     //TODO WHICH ONE IS IT?
     $_POST['input'] = $str;
-    $answer = $_REQUEST['say'];
+    $answer = $display;
     return $answer;
 
     //小i机器人
