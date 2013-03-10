@@ -106,13 +106,20 @@
     $convoArr = add_new_conversation_vars($say, $convoArr);
     //parse the aiml
     $convoArr = make_conversation($convoArr);
+    echo $convoArr;
     $convoArr = log_conversation($convoArr);
+    echo $convoArr;
     $convoArr = log_conversation_state($convoArr);
+    echo $convoArr;
     $convoArr = write_to_session($convoArr);
+    echo $convoArr;
     $convoArr = get_conversation($convoArr);
+    echo $convoArr;
     $convoArr = run_post_response_useraddons($convoArr);
+    echo $convoArr;
     //return the values to display
     $display = $convoArr['send_to_user'];
+    echo $convoArr;
 
     //Added By Jack 20130309 
     //Hide Debug Info
