@@ -48,8 +48,8 @@
 		<link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" />
 
     <!--Edit By Jack 20130310-->
-		<!--<<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />-->
-    meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<!--<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />-->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<title>EasyRobot 灵感机器人</title>
 		<meta name="Description" content="EasyRobot 灵感机器人，专注自然语言交互，乐于倾听更善于表达。
 EasyApple出品，功能逐步完善，后续将开放调用接口。" />
