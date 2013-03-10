@@ -75,6 +75,7 @@
     runDebug(__FILE__, __FUNCTION__, __LINE__, "Details:\nUser say: " . $_REQUEST['say'] . "\nConvo id: " . $_REQUEST['convo_id'] . "\nBot id: " . $_REQUEST['bot_id'] . "\nFormat: " . $_REQUEST['format'], 2);
     //get the stored vars
     $convoArr = read_from_session();
+    echo $convoArr;
     //now overwrite with the recieved data
     $convoArr = check_set_bot($convoArr);
     $convoArr = check_set_convo_id($convoArr);
