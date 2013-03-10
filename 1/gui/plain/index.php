@@ -56,6 +56,17 @@ EasyApple出品，功能逐步完善，后续将开放调用接口。" />
 		<meta name="keywords" content="AIML, PHP, MySQL, Chatbot, EasyRobot, Easybot, 灵感机器人, 聊天机器人, 灵感水手, SAE, 中文机器人" />
 	</head>
 	<body onload="document.getElementById('input').focus()">
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-3914685173905728";
+  /* 长条横幅2 */
+  google_ad_slot = "8282754143";
+  google_ad_width = 728;
+  google_ad_height = 90;
+  //-->
+  </script>
+  <script type="text/javascript"
+  src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
 	<?php echo $display;?>
 		<form method="get" action="index.php">
 			<p>
