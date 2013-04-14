@@ -5,8 +5,8 @@ class EasyRobot
 {
   public function reply($say)
   {
-    //$display = "";
-    $thisFile = __FILE__;
+    $display = "";
+    //$thisFile = __FILE__;
     $_REQUEST['say'] = $say;
     require_once ('config/global_config.php');
     require_once ('chatbot/conversation_start.php');
