@@ -64,10 +64,10 @@
   $display = "";
   runDebug(__FILE__, __FUNCTION__, __LINE__, "Loaded all Includes", 4);
   //if the user has said something
+  $_REQUEST['say'] = "Hello";
   if ((isset ($_REQUEST['say'])) && (trim($_REQUEST['say']) != ""))
   {
     $say = trim($_REQUEST['say']);
-    $say = "hello";
     //add any pre-processing addons
     $say = run_pre_input_addons($convoArr, $say);
     #die('say = ' . $say);
