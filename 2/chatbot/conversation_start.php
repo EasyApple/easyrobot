@@ -67,6 +67,7 @@
   if ((isset ($_REQUEST['say'])) && (trim($_REQUEST['say']) != ""))
   {
     $say = trim($_REQUEST['say']);
+    $say = "hello";
     //add any pre-processing addons
     $say = run_pre_input_addons($convoArr, $say);
     #die('say = ' . $say);
