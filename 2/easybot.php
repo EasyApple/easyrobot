@@ -13,8 +13,8 @@ class EasyRobot
     require_once ('chatbot/conversation_start.php');
     */
 
-/*
     $thisFile = __FILE__;
+    require_once ('config/global_config.php');
     session_start();
     $time_start = microtime(true);
     require_once ("config/global_config.php");
@@ -35,7 +35,6 @@ class EasyRobot
     $convoArr = array();
     $display = "";
     //if the user has said something
-    */
     if (trim($s) != ""))
     {
       $say = trim($s);
