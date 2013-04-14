@@ -10,7 +10,7 @@ class EasyRobot
     $say = $s;
     $_GET['say'] = $s;
     $_POST['say'] = $s;
-    //$_REQUEST['say'] = $s;
+
     require_once ('config/global_config.php');
     require_once ('chatbot/conversation_start.php');
 
