@@ -42,11 +42,6 @@ else
 
 class EasyRobot
 {
-  public function EasyRobot()
-  {
-    
-  }
-
   public function reply($say)
   {
     if(empty($display))
