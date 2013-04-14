@@ -3,11 +3,10 @@
 
 class EasyRobot
 {
-  public function reply($say)
+  public function reply($s)
   {
-    //$display = "";
-    //$thisFile = __FILE__;
-    $_REQUEST['say'] = $say;
+    $display = "";
+    $thisFile = __FILE__;
     require_once ('config/global_config.php');
     require_once ('chatbot/conversation_start.php');
     if (isset ($_REQUEST['bot_id']))
@@ -35,6 +34,7 @@ class EasyRobot
     {
       $format = "html";
     }
+    $say = $s;
 
     if(empty($display))
     {
