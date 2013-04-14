@@ -47,7 +47,7 @@ class EasyRobot
     {
       $display = "What are you saying about?";
     }
-    return $display;
+    return $say.$display;
   }
 
   private function learn($say,$reply)
