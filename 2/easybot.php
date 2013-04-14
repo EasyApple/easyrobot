@@ -35,15 +35,7 @@ class EasyRobot
     {
       $format = "html";
     }
-    $_REQUEST['say'] = $s;
-    if (isset ($_REQUEST['say']))
-    {
-      $say = $_REQUEST['say'];
-    }
-    else
-    {
-      $say = $s;
-    }
+    $_POST['say'] = $s;
 
     if(empty($display))
     {
