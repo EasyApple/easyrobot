@@ -35,51 +35,52 @@ class EasyRobot
     {
       $format = "html";
     }
-?>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
-  <head>
-    <link rel="icon" href="./favicon.ico" type="image/x-icon" />
-    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" />
+    $say = $s;
+    //add any pre-processing addons
+    $say = run_pre_input_addons($convoArr, $say);
+    #die('say = ' . $say);
+    runDebug(__FILE__, __FUNCTION__, __LINE__, "Details:\nUser say: " . $_REQUEST['say'] . "\nConvo id: " . $_REQUEST['convo_id'] . "\nBot id: " . $_REQUEST['bot_id'] . "\nFormat: " . $_REQUEST['format'], 2);
+    //get the stored vars
+    $convoArr = read_from_session();
+    //now overwrite with the recieved data
+    $convoArr = check_set_bot($convoArr);
+    $convoArr = check_set_convo_id($convoArr);
+    $convoArr = check_set_user($convoArr);
+    $convoArr = check_set_format($convoArr);
+    $convoArr['time_start'] = $time_start;
+    //if totallines = 0 then this is new user
+    if (isset ($convoArr['conversation']['totallines']))
+    {
+    //reset the debug level here
+      $debuglevel = get_convo_var($convoArr, 'conversation', 'debugshow', '', '');
+    }
+    else
+    {
+    //load the chatbot configuration
+      $convoArr = load_bot_config($convoArr);
+      //reset the debug level here
+      $debuglevel = get_convo_var($convoArr, 'conversation', 'debugshow', '', '');
+      //insita
+      $convoArr = intialise_convoArray($convoArr);
+      //add the bot_id dependant vars
+      $convoArr = add_firstturn_conversation_vars($convoArr);
+      $convoArr['conversation']['totallines'] = 0;
+      $convoArr = get_user_id($convoArr);
+    }
+    $convoArr['aiml'] = array();
+    //add the latest thing the user said
+    $convoArr = add_new_conversation_vars($say, $convoArr);
+    //parse the aiml
+    $convoArr = make_conversation($convoArr);
+    $convoArr = log_conversation($convoArr);
+    $convoArr = log_conversation_state($convoArr);
+    $convoArr = write_to_session($convoArr);
+    $convoArr = get_conversation($convoArr);
+    $convoArr = run_post_response_useraddons($convoArr);
+    //return the values to display
+    $display = $convoArr['send_to_user'];
 
-    <!--Edit By Jack 20130310-->
-    <!--<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />-->
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>EasyRobot 灵感机器人</title>
-    <meta name="Description" content="EasyRobot 灵感机器人，专注自然语言交互，乐于倾听更善于表达。
-EasyApple出品，功能逐步完善，后续将开放调用接口。" />
-    <meta name="keywords" content="AIML, PHP, MySQL, Chatbot, EasyRobot, Easybot, 灵感机器人, 聊天机器人, 灵感水手, SAE, 中文机器人" />
-  </head>
-  <body onload="document.getElementById('input').focus()">
-  <center>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-3914685173905728";
-  /* 长条横幅2 */
-  google_ad_slot = "8282754143";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-  src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-  <?php echo $display;?>
-    <form method="get" action="easybot.php">
-      <p>
-        <label>Say:</label>
-        <input type="text" id="input" name="say" id="say" />
-        <input type="submit" name="submit" id="say" value="say" />
-        <input type="hidden" name="convo_id" id="convo_id" value="<?php echo $convo_id;?>" />
-        <input type="hidden" name="bot_id" id="bot_id" value="<?php echo $bot_id;?>" />
-        <input type="hidden" name="format" id="format" value="<?php echo $format;?>" />
-      </p>
-    </form>
-  </center>
-  </body>
-</html>
-
-<?php
     if(empty($display))
     {
       $display = "EasyRobot is being developed...";
