@@ -5,7 +5,7 @@ class EasyRobot
 {
   public function reply($say)
   {
-    $display = "";
+    //$display = "";
     $thisFile = __FILE__;
     $_REQUEST['say'] = $say;
     require_once ('config/global_config.php');
