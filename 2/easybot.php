@@ -8,6 +8,8 @@ class EasyRobot
     $display = "";
     $thisFile = __FILE__;
     $say = $s;
+    $_GET['say'] = $s;
+    $_POST['say'] = $s;
     require_once ('config/global_config.php');
     require_once ('chatbot/conversation_start.php');
 
