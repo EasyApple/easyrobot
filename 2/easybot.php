@@ -23,40 +23,12 @@ class EasyRobot
     * DETAILS: this file is the landing page for all calls to access the bots
     ***************************************/
     $thisFile = __FILE__;
-    if (trim($s) == "clear properties"))
-    {
-      session_start();
-      // Unset all of the session variables.
-      $_SESSION = array();
-      // If it's desired to kill the session, also delete the session cookie.
-      // Note: This will destroy the session, and not just the session data!
-      if (ini_get("session.use_cookies"))
-      {
-        $params = session_get_cookie_params();
-        setcookie(session_name(), '', time() - 42000, $params["path"], $params["domain"], $params["secure"], $params["httponly"]);
-      }
-      // Finally, destroy the session.
-      session_destroy();
-      session_start();
-      session_regenerate_id();
-      $new_id = session_id();
-      //TODO WHICH ONE IS IT?
-      $_GET['convo_id'] = $new_id;
-      $_POST['convo_id'] = $new_id;
-      $_REQUEST['convo_id'] = $new_id;
-      $_REQUEST['say'] = "Hello";
-    }
-    else
-    {
-      session_start();
-    }
+    session_start();
     $time_start = microtime(true);
     require_once ("config/global_config.php");
     //load shared files
     include_once (_LIB_PATH_ . "db_functions.php");
     include_once (_LIB_PATH_ . "error_functions.php");
-    //leave this first debug call in as it wipes any existing file for this session
-    runDebug(__FILE__, __FUNCTION__, __LINE__, "Conversation Starting", 4);
     //load all the chatbot functions
     include_once (_BOTCORE_PATH_ . "aiml" . $path_separator . "load_aimlfunctions.php");
     //load all the user functions
@@ -65,25 +37,17 @@ class EasyRobot
     include_once (_BOTCORE_PATH_ . "user" . $path_separator . "load_userfunctions.php");
     //load all the user addons
     include_once (_ADDONS_PATH_ . "load_addons.php");
-    //------------------------------------------------------------------------
-    // Error Handler
-    //------------------------------------------------------------------------
-    // set to the user defined error handler
-    set_error_handler("myErrorHandler");
     //open db connection
     $con = db_open();
     //initialise globals
     $convoArr = array();
     $display = "";
-    runDebug(__FILE__, __FUNCTION__, __LINE__, "Loaded all Includes", 4);
     //if the user has said something
     if (trim($s) != ""))
     {
       $say = trim($s);
       //add any pre-processing addons
       $say = run_pre_input_addons($convoArr, $say);
-      #die('say = ' . $say);
-      runDebug(__FILE__, __FUNCTION__, __LINE__, "Details:\nUser say: " . $_REQUEST['say'] . "\nConvo id: " . $_REQUEST['convo_id'] . "\nBot id: " . $_REQUEST['bot_id'] . "\nFormat: " . $_REQUEST['format'], 2);
       //get the stored vars
       $convoArr = read_from_session();
       //now overwrite with the recieved data
@@ -123,16 +87,13 @@ class EasyRobot
       $convoArr = run_post_response_useraddons($convoArr);
       //return the values to display
       $display = $convoArr['send_to_user'];
-
-      //Added By Jack 20130309 
-      //Hide Debug Info
-      return $display;
-
     }
-    else
+    /*
+    if(empty($display))
     {
       $display = "EasyRobot is being developed...";
     }
+    */
     return $display;
   }
 
