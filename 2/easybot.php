@@ -13,15 +13,6 @@ class EasyRobot
     require_once ('chatbot/conversation_start.php');
     */
 
-    /***************************************
-    * http://www.program-o.com
-    * PROGRAM O
-    * Version: 2.0.9
-    * FILE: chatbot/conversation_start.php
-    * AUTHOR: ELIZABETH PERREAU
-    * DATE: 19 JUNE 2012
-    * DETAILS: this file is the landing page for all calls to access the bots
-    ***************************************/
     $thisFile = __FILE__;
     session_start();
     $time_start = microtime(true);
