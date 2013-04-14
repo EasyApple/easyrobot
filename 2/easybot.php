@@ -65,7 +65,7 @@ EasyApple出品，功能逐步完善，后续将开放调用接口。" />
   src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
   </script>
   <?php echo $display;?>
-    <form method="get" action="index.php">
+    <form method="get" action="easybot.php">
       <p>
         <label>Say:</label>
         <input type="text" id="input" name="say" id="say" />
