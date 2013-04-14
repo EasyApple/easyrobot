@@ -7,7 +7,7 @@ class EasyRobot
   {
     $display = "";
     $thisFile = __FILE__;
-    //$_REQUEST['say'] = $s;
+
     require_once ('config/global_config.php');
     require_once ('chatbot/conversation_start.php');
     if (isset ($_REQUEST['bot_id']))
@@ -35,6 +35,7 @@ class EasyRobot
     {
       $format = "html";
     }
+    $_REQUEST['say'] = $s;
     if (isset ($_REQUEST['say']))
     {
       $say = $_REQUEST['say'];
