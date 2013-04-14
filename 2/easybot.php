@@ -5,7 +5,7 @@ class EasyRobot
 {
   public function reply($s)
   {
-    //$display = "EasyRobot is being developed...";
+    $display = "EasyRobot is being developed...";
     $thisFile = __FILE__;
     $say = $s;
     require_once ('config/global_config.php');
