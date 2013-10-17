@@ -300,14 +300,14 @@ function load_bot_config($convoArr){
 
     runDebug( __FILE__, __FUNCTION__, __LINE__, "Getting bot config from DB",1);
 
-    return $convoArr;
-    
     //get the values from the db
     $sql = "SELECT * FROM `$dbn`.`bots` WHERE bot_id = '".$convoArr['conversation']['bot_id']."'";
 
     runDebug( __FILE__, __FUNCTION__, __LINE__, "load bot config SQL: $sql",3);
 
     $result = db_query($sql,$con) or die('You have a SQL error on line '. __LINE__ . ' of ' . __FILE__ . '. Error message is: ' . mysql_error() . ".<br />\nSQL = $sql<br />\n");
+
+    return $convoArr;
 
     #if(($result)&&(db_res_count($result)>0)){
     if($result !== false and (mysql_num_rows($result) > 0)){
