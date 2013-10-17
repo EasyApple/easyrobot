@@ -169,7 +169,7 @@
 
       //load the chatbot configuration
       //Marked By Jack Bug Point
-      $convoArr = load_bot_config($convoArr);
+      //$convoArr = load_bot_config($convoArr);
 
       //insita
       $convoArr = intialise_convoArray($convoArr);
