@@ -298,7 +298,7 @@ function load_bot_config($convoArr){
 
     global $con,$dbn, $default_format,$default_pattern,$default_update_aiml_code,$default_conversation_lines,$default_remember_up_to,$default_debugemail,$default_debugshow,$default_debugmode,$default_save_state, $error_response;
 
-    /*
+    //Edit By Jack 默认值重新赋值
     $default_bot_id = 1;
     $default_format = '[default_format]';
     $default_use_aiml_code = '[default_use_aiml_code]';
@@ -308,7 +308,6 @@ function load_bot_config($convoArr){
     $default_conversation_lines = '1';
     $default_remember_up_to = '10';
     $default_debugemail = '[default_debugemail]';
-    */
 
     runDebug( __FILE__, __FUNCTION__, __LINE__, "Getting bot config from DB",1);
 
@@ -319,7 +318,7 @@ function load_bot_config($convoArr){
 
     //Edit By Jack 取默认参数
     //$result = db_query($sql,$con) or die('You have a SQL error on line '. __LINE__ . ' of ' . __FILE__ . '. Error message is: ' . mysql_error() . ".<br />\nSQL = $sql<br />\n");
-    
+
     #if(($result)&&(db_res_count($result)>0)){
     /*
     if($result !== false and (mysql_num_rows($result) > 0)){

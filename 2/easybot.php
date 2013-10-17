@@ -11,6 +11,11 @@ class EasyRobot
     $_GET['say'] = $s;
     $_POST['say'] = $s;
 
+    $_REQUEST['bot_id'] = 1;
+    //session started in the conversation_start.php
+    $_REQUEST['convo_id'] = session_id();
+    $_REQUEST['format'] = "html";
+
     require_once ('config/global_config.php');
     require_once ('chatbot/conversation_start.php');
 
