@@ -163,9 +163,6 @@
       //load the chatbot configuration
       //$convoArr = load_bot_config($convoArr);
 
-      $display = "Store Loaded";
-      return;
-
       //insita
       $convoArr = intialise_convoArray($convoArr);
       //add the bot_id dependant vars
