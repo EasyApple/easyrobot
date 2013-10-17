@@ -176,14 +176,17 @@
 
       //parse the aiml
       $convoArr = make_conversation($convoArr);
+
+      $display = "Compelete";
+      return;
+
       $convoArr = log_conversation($convoArr);
       $convoArr = log_conversation_state($convoArr);
       $convoArr = write_to_session($convoArr);
       $convoArr = get_conversation($convoArr);
       $convoArr = run_post_response_useraddons($convoArr);
 
-      $display = "Compelete";
-      return;
+
 
       //return the values to display
       $display = $convoArr['send_to_user'];
