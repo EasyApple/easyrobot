@@ -173,6 +173,7 @@
       //Marked By Jack Bug Point
       $convoArr = load_bot_config($convoArr);
 
+      /*
       //insita
       $convoArr = intialise_convoArray($convoArr);
       //add the bot_id dependant vars
@@ -193,7 +194,8 @@
       $convoArr = get_conversation($convoArr);
       //Marked By Jack Bug Point
       $convoArr = run_post_response_useraddons($convoArr);
-
+      */
+      
       //return the values to display
       $display = $convoArr['send_to_user'];
     }
