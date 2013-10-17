@@ -10,7 +10,6 @@
   * DETAILS: this file is the landing page for all calls to access the bots
   ***************************************/
   $thisFile = __FILE__;
-  $display = "Test";
   if ((isset ($_REQUEST['say'])) && (trim($_REQUEST['say']) == "clear properties"))
   {
     session_start();
@@ -142,4 +141,5 @@
   $time = $time_end - $time_start;
   runDebug(__FILE__, __FUNCTION__, __LINE__, "Script took $time seconds", 2);
 
+  $display = "Test";
 ?>
