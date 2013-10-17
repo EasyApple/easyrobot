@@ -8,18 +8,18 @@ class EasyRobot
     $display = "";
     $thisFile = __FILE__;
 
-    $_GET['say'] = $s;
-    $_POST['say'] = $s;
-
     session_start();
     session_regenerate_id();
     $new_id = session_id();
+    session_destroy();
+    
     //TODO WHICH ONE IS IT?
     $_GET['convo_id'] = $new_id;
     $_POST['convo_id'] = $new_id;
     $_REQUEST['convo_id'] = $new_id;
-    $_REQUEST['bot_id'] = 1;
     $_REQUEST['say'] = $s;
+
+    $_REQUEST['bot_id'] = 1;
     $_REQUEST['format'] = "plain";
 
     require_once ('config/global_config.php');
