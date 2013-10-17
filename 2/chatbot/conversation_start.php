@@ -181,11 +181,8 @@
       $convoArr = log_conversation_state($convoArr);
       $convoArr = write_to_session($convoArr);
       $convoArr = get_conversation($convoArr);
-      //Marked By Jack Bug Point
       $convoArr = run_post_response_useraddons($convoArr);
-      $display = "Test";
-      return;
-      
+
       //return the values to display
       $display = $convoArr['send_to_user'];
     }
