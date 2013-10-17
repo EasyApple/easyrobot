@@ -346,7 +346,7 @@ function load_bot_config($convoArr){
         $convoArr['conversation']['debugmode']=1;
     }
 
-    $convoArr['send_to_user'] = "TEST";
+    $convoArr['send_to_user'] = $default_use_aiml_code;
     return $convoArr;
 }
     
