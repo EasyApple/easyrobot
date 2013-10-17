@@ -5,7 +5,7 @@ class EasyRobot
 {
   public function reply($s)
   {
-    $display = "";
+    //$display = "";
     $thisFile = __FILE__;
     $say = $s;
     //$_GET['say'] = $s;
