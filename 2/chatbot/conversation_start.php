@@ -151,8 +151,6 @@
   {
     if ((isset ($say)) && (trim($say) != ""))
     {
-      $display = "Test";
-      return;
       //get the stored vars
       $convoArr = read_from_session();
       //now overwrite with the recieved data
@@ -161,25 +159,18 @@
       $convoArr = check_set_user($convoArr);
       $convoArr = check_set_format($convoArr);
       $convoArr['time_start'] = $time_start;
-      //if totallines = 0 then this is new user
-      if (isset ($convoArr['conversation']['totallines']))
-      {
-        //reset the debug level here
-        $debuglevel = get_convo_var($convoArr, 'conversation', 'debugshow', '', '');
-      }
-      else
-      {
-        //load the chatbot configuration
-        $convoArr = load_bot_config($convoArr);
-        //reset the debug level here
-        $debuglevel = get_convo_var($convoArr, 'conversation', 'debugshow', '', '');
-        //insita
-        $convoArr = intialise_convoArray($convoArr);
-        //add the bot_id dependant vars
-        $convoArr = add_firstturn_conversation_vars($convoArr);
-        $convoArr['conversation']['totallines'] = 0;
-        $convoArr = get_user_id($convoArr);
-      }
+
+      //load the chatbot configuration
+      $convoArr = load_bot_config($convoArr);
+      //insita
+      $convoArr = intialise_convoArray($convoArr);
+      //add the bot_id dependant vars
+      $convoArr = add_firstturn_conversation_vars($convoArr);
+      $convoArr['conversation']['totallines'] = 0;
+      $convoArr = get_user_id($convoArr);
+
+      $display = "Conf Loaded";
+
       $convoArr['aiml'] = array();
       //add the latest thing the user said
       $convoArr = add_new_conversation_vars($say, $convoArr);
@@ -192,7 +183,7 @@
       $convoArr = run_post_response_useraddons($convoArr);
       //return the values to display
       $display = $convoArr['send_to_user'];
-      $display = "Test";
+      $display += "Test";
     }
     else
     {
