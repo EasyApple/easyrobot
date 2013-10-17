@@ -74,8 +74,8 @@ class wechatCallbackapiTest
           }
           else
           {
-            //$reply = $talk->reply($keyword);
-            $reply = $easybot->reply($keyword);
+            $reply = $talk->reply($keyword);
+            //$reply = $easybot->reply($keyword);
             if (empty($reply)) 
             {
               //Queryinfo
