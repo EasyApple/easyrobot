@@ -174,10 +174,6 @@
       //add the latest thing the user said
       $convoArr = add_new_conversation_vars($say, $convoArr);
 
-
-      $display = "Compelete";
-      return;
-      
       //parse the aiml
       $convoArr = make_conversation($convoArr);
       $convoArr = log_conversation($convoArr);
@@ -185,6 +181,10 @@
       $convoArr = write_to_session($convoArr);
       $convoArr = get_conversation($convoArr);
       $convoArr = run_post_response_useraddons($convoArr);
+
+      $display = "Compelete";
+      return;
+
       //return the values to display
       $display = $convoArr['send_to_user'];
   
