@@ -123,6 +123,8 @@
     $convoArr['aiml'] = array();
     //add the latest thing the user said
     $convoArr = add_new_conversation_vars($say, $convoArr);
+    $display = $say;
+    
     //parse the aiml
     $convoArr = make_conversation($convoArr);
     $convoArr = log_conversation($convoArr);
