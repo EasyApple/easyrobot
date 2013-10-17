@@ -176,11 +176,12 @@
 
       //parse the aiml
       $convoArr = make_conversation($convoArr);
+      $convoArr = log_conversation($convoArr);
+
 
       $display = "Compelete";
       return;
-
-      $convoArr = log_conversation($convoArr);
+      
       $convoArr = log_conversation_state($convoArr);
       $convoArr = write_to_session($convoArr);
       $convoArr = get_conversation($convoArr);
