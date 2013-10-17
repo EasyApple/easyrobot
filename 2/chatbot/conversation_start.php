@@ -162,7 +162,7 @@
 
       //load the chatbot configuration
       //Marked By Jack Bug Point
-      //$convoArr = load_bot_config($convoArr);
+      $convoArr = load_bot_config($convoArr);
 
       //insita
       $convoArr = intialise_convoArray($convoArr);
@@ -181,6 +181,7 @@
       $convoArr = log_conversation_state($convoArr);
       $convoArr = write_to_session($convoArr);
       $convoArr = get_conversation($convoArr);
+      //Marked By Jack Bug Point
       $convoArr = run_post_response_useraddons($convoArr);
 
       //return the values to display
