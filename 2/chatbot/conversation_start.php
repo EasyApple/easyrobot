@@ -170,6 +170,8 @@
       $convoArr['conversation']['totallines'] = 0;
       $convoArr = get_user_id($convoArr);
 
+      $display = "Compelete";
+      return;
 
       $convoArr['aiml'] = array();
       //add the latest thing the user said
@@ -183,7 +185,7 @@
       $convoArr = run_post_response_useraddons($convoArr);
       //return the values to display
       $display = $convoArr['send_to_user'];
-      $display = "Compelete";
+  
     }
     else
     {
