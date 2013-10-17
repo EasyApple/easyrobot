@@ -300,6 +300,8 @@ function load_bot_config($convoArr){
 
     runDebug( __FILE__, __FUNCTION__, __LINE__, "Getting bot config from DB",1);
 
+    return $convoArr;
+    
     //get the values from the db
     $sql = "SELECT * FROM `$dbn`.`bots` WHERE bot_id = '".$convoArr['conversation']['bot_id']."'";
 
