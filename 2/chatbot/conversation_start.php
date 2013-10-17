@@ -170,6 +170,7 @@
       $convoArr = get_user_id($convoArr);
 
       $display = "Conf Loaded";
+      return;
 
       $convoArr['aiml'] = array();
       //add the latest thing the user said
