@@ -29,7 +29,7 @@ function run_post_response_useraddons($convoArr) {
   //$response = (isset($convoArr['send_to_user'])) ? $convoArr['send_to_user'] : die('<pre>' . print_r($convoArr, true) . "\n</pre>\n");
 
   $response = "Test";
-  return $convoArr;
+  //return $convoArr;
 
   $curTime = date('H:i:s');
   $response = str_replace('[serverTime]',$curTime, $response);
