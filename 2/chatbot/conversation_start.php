@@ -10,6 +10,7 @@
   * DETAILS: this file is the landing page for all calls to access the bots
   ***************************************/
   $thisFile = __FILE__;
+  $display = "Test";
   if ((isset ($_REQUEST['say'])) && (trim($_REQUEST['say']) == "clear properties"))
   {
     session_start();
