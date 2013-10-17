@@ -161,6 +161,7 @@
       $convoArr['time_start'] = $time_start;
 
       //load the chatbot configuration
+      //Marked By Jack Bug Point
       //$convoArr = load_bot_config($convoArr);
 
       //insita
@@ -180,17 +181,12 @@
       $convoArr = log_conversation_state($convoArr);
       $convoArr = write_to_session($convoArr);
       $convoArr = get_conversation($convoArr);
+      //Marked By Jack Bug Point
       //$convoArr = run_post_response_useraddons($convoArr);
-
-      
-      
-      $display = "Compelete";
-      //return;
-
-
 
       //return the values to display
       $display = $convoArr['send_to_user'];
+      $display = $convoArr[0];
   
     }
     else
