@@ -41,7 +41,7 @@
     $_REQUEST['convo_id'] = $new_id;
     $_REQUEST['say'] = "Hello";
   }
-  else
+  else if($requestMode == "ClientMode")
   {
     session_start();
     session_regenerate_id();
@@ -51,6 +51,10 @@
     $_POST['convo_id'] = $new_id;
     $_REQUEST['convo_id'] = $new_id;
     $_REQUEST['say'] = $say;
+  }
+  else
+  {
+     session_start();   
   }
 
   $time_start = microtime(true);
