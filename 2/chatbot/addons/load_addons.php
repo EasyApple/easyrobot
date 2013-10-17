@@ -26,10 +26,10 @@ function run_pre_input_addons(&$convoArr, $say) {
 
 function run_post_response_useraddons($convoArr) {
   $format = $convoArr['conversation']['format'];
-  //$response = (isset($convoArr['send_to_user'])) ? $convoArr['send_to_user'] : die('<pre>' . print_r($convoArr, true) . "\n</pre>\n");
 
+  //Edited By Jack Bug Point
+  //$response = (isset($convoArr['send_to_user'])) ? $convoArr['send_to_user'] : die('<pre>' . print_r($convoArr, true) . "\n</pre>\n");
   $response = $convoArr['send_to_user'];
-  //return $convoArr;
 
   $curTime = date('H:i:s');
   $response = str_replace('[serverTime]',$curTime, $response);
