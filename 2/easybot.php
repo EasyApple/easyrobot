@@ -20,7 +20,7 @@ class EasyRobot
     $_REQUEST['say'] = $s;
 
     $_REQUEST['bot_id'] = 1;
-    $_REQUEST['format'] = "html";
+    $_REQUEST['format'] = "txt";
 
     require_once ('config/global_config.php');
     require_once ('chatbot/conversation_start.php');
