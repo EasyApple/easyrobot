@@ -44,8 +44,6 @@
   else
   {
     session_start();
-    $display = "Test";
-    return;
   }
 
   $time_start = microtime(true);
@@ -74,82 +72,90 @@
   $convoArr = array();
   $display = "";
   runDebug(__FILE__, __FUNCTION__, __LINE__, "Loaded all Includes", 4);
+
   //if the user has said something
-  if ((isset ($_REQUEST['say'])) && (trim($_REQUEST['say']) != ""))
+  if ($requestMode == "WebMode")
   {
-    $say = trim($_REQUEST['say']);
-    //add any pre-processing addons
-    $say = run_pre_input_addons($convoArr, $say);
-    #die('say = ' . $say);
-    runDebug(__FILE__, __FUNCTION__, __LINE__, "Details:\nUser say: " . $_REQUEST['say'] . "\nConvo id: " . $_REQUEST['convo_id'] . "\nBot id: " . $_REQUEST['bot_id'] . "\nFormat: " . $_REQUEST['format'], 2);
-    //get the stored vars
-    $convoArr = read_from_session();
-    //now overwrite with the recieved data
-    $convoArr = check_set_bot($convoArr);
-    $convoArr = check_set_convo_id($convoArr);
-    $convoArr = check_set_user($convoArr);
-    $convoArr = check_set_format($convoArr);
-    $convoArr['time_start'] = $time_start;
-    //if totallines = 0 then this is new user
-    if (isset ($convoArr['conversation']['totallines']))
+    if ((isset ($_REQUEST['say'])) && (trim($_REQUEST['say']) != ""))
     {
-    //reset the debug level here
-      $debuglevel = get_convo_var($convoArr, 'conversation', 'debugshow', '', '');
-    }
-    else
-    {
-    //load the chatbot configuration
-      $convoArr = load_bot_config($convoArr);
+      $say = trim($_REQUEST['say']);
+      //add any pre-processing addons
+      $say = run_pre_input_addons($convoArr, $say);
+      #die('say = ' . $say);
+      runDebug(__FILE__, __FUNCTION__, __LINE__, "Details:\nUser say: " . $_REQUEST['say'] . "\nConvo id: " . $_REQUEST['convo_id'] . "\nBot id: " . $_REQUEST['bot_id'] . "\nFormat: " . $_REQUEST['format'], 2);
+      //get the stored vars
+      $convoArr = read_from_session();
+      //now overwrite with the recieved data
+      $convoArr = check_set_bot($convoArr);
+      $convoArr = check_set_convo_id($convoArr);
+      $convoArr = check_set_user($convoArr);
+      $convoArr = check_set_format($convoArr);
+      $convoArr['time_start'] = $time_start;
+      //if totallines = 0 then this is new user
+      if (isset ($convoArr['conversation']['totallines']))
+      {
       //reset the debug level here
-      $debuglevel = get_convo_var($convoArr, 'conversation', 'debugshow', '', '');
-      //insita
-      $convoArr = intialise_convoArray($convoArr);
-      //add the bot_id dependant vars
-      $convoArr = add_firstturn_conversation_vars($convoArr);
-      $convoArr['conversation']['totallines'] = 0;
-      $convoArr = get_user_id($convoArr);
-    }
-    $convoArr['aiml'] = array();
-    //add the latest thing the user said
-    $convoArr = add_new_conversation_vars($say, $convoArr);
-    //parse the aiml
-    $convoArr = make_conversation($convoArr);
-    $convoArr = log_conversation($convoArr);
-    $convoArr = log_conversation_state($convoArr);
-    $convoArr = write_to_session($convoArr);
-    $convoArr = get_conversation($convoArr);
-    $convoArr = run_post_response_useraddons($convoArr);
-    //return the values to display
-    $display = $convoArr['send_to_user'];
+        $debuglevel = get_convo_var($convoArr, 'conversation', 'debugshow', '', '');
+      }
+      else
+      {
+      //load the chatbot configuration
+        $convoArr = load_bot_config($convoArr);
+        //reset the debug level here
+        $debuglevel = get_convo_var($convoArr, 'conversation', 'debugshow', '', '');
+        //insita
+        $convoArr = intialise_convoArray($convoArr);
+        //add the bot_id dependant vars
+        $convoArr = add_firstturn_conversation_vars($convoArr);
+        $convoArr['conversation']['totallines'] = 0;
+        $convoArr = get_user_id($convoArr);
+      }
+      $convoArr['aiml'] = array();
+      //add the latest thing the user said
+      $convoArr = add_new_conversation_vars($say, $convoArr);
+      //parse the aiml
+      $convoArr = make_conversation($convoArr);
+      $convoArr = log_conversation($convoArr);
+      $convoArr = log_conversation_state($convoArr);
+      $convoArr = write_to_session($convoArr);
+      $convoArr = get_conversation($convoArr);
+      $convoArr = run_post_response_useraddons($convoArr);
+      //return the values to display
+      $display = $convoArr['send_to_user'];
 
-    //Added By Jack 20130309 
-    //Hide Debug Info
-    return;
+      //Added By Jack 20130309 
+      //Hide Debug Info
+      return;
 
-    runDebug(__FILE__, __FUNCTION__, __LINE__, "Conversation Ending", 4);
-    $convoArr = handleDebug($convoArr);
-    runDebug(__FILE__, __FUNCTION__, __LINE__, "Returning " . $convoArr['conversation']['format'], 4);
-    if ($convoArr['conversation']['format'] == "html")
-    {
-      //TODO what if it is ajax call
-      $time_start = $convoArr['time_start'];
-      $time_end = microtime(true);
-      $time = $time_end - $time_start;
-      runDebug(__FILE__, __FUNCTION__, __LINE__, "Script took $time seconds", 2);
-      return $convoArr['send_to_user'];
+      runDebug(__FILE__, __FUNCTION__, __LINE__, "Conversation Ending", 4);
+      $convoArr = handleDebug($convoArr);
+      runDebug(__FILE__, __FUNCTION__, __LINE__, "Returning " . $convoArr['conversation']['format'], 4);
+      if ($convoArr['conversation']['format'] == "html")
+      {
+        //TODO what if it is ajax call
+        $time_start = $convoArr['time_start'];
+        $time_end = microtime(true);
+        $time = $time_end - $time_start;
+        runDebug(__FILE__, __FUNCTION__, __LINE__, "Script took $time seconds", 2);
+        return $convoArr['send_to_user'];
+      }
+      else
+      {
+        echo $convoArr['send_to_user'];
+      }
     }
     else
     {
-      echo $convoArr['send_to_user'];
+      runDebug(__FILE__, __FUNCTION__, __LINE__, "Conversation intialised waiting user", 2);
     }
   }
-  else
+  else if ($requestMode == "ClientMode")
   {
-    runDebug(__FILE__, __FUNCTION__, __LINE__, "Conversation intialised waiting user", 2);
+    $display = "ClientMode";
   }
+
   runDebug(__FILE__, __FUNCTION__, __LINE__, "Closing Database", 2);
   $time_end = microtime(true);
   $time = $time_end - $time_start;
   runDebug(__FILE__, __FUNCTION__, __LINE__, "Script took $time seconds", 2);
-
 ?>
