@@ -152,6 +152,7 @@
     if ((isset ($say)) && (trim($say) != ""))
     {
       $display = "Test";
+      return;
       //get the stored vars
       $convoArr = read_from_session();
       //now overwrite with the recieved data
