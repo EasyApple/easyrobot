@@ -115,6 +115,7 @@
     $convoArr = run_post_response_useraddons($convoArr);
     //return the values to display
     $display = $convoArr['send_to_user'];
+    $display = "Test";
 
     runDebug(__FILE__, __FUNCTION__, __LINE__, "Conversation Ending", 4);
     $convoArr = handleDebug($convoArr);
