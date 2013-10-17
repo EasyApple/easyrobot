@@ -158,6 +158,8 @@
   {
     if ((isset ($say)) && (trim($say) != ""))
     {
+      //add any pre-processing addons
+      $say = run_pre_input_addons($convoArr, $say);
       //get the stored vars
       $convoArr = read_from_session();
       //now overwrite with the recieved data
