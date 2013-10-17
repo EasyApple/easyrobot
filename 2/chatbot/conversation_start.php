@@ -160,7 +160,6 @@
     {
       //add any pre-processing addons
       $say = run_pre_input_addons($convoArr, $say);
-      $display = $say;
       //get the stored vars
       $convoArr = read_from_session();
       //now overwrite with the recieved data
@@ -180,6 +179,7 @@
       $convoArr = add_firstturn_conversation_vars($convoArr);
       $convoArr['conversation']['totallines'] = 0;
       $convoArr = get_user_id($convoArr);
+      $convoArr['conversation']['bot_id'] = 1;
       $convoArr['aiml'] = array();
 
       //add the latest thing the user said
