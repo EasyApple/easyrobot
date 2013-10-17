@@ -295,6 +295,7 @@ function push_on_front_convoArr($arrayIndex,$value,$convoArr)
  * @return $convoArr (updated)
 **/
 function load_bot_config($convoArr){
+    return;
     global $con,$dbn, $default_format,$default_pattern,$default_update_aiml_code,$default_conversation_lines,$default_remember_up_to,$default_debugemail,$default_debugshow,$default_debugmode,$default_save_state, $error_response;
 
 
