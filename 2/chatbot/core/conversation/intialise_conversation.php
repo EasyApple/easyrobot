@@ -307,6 +307,7 @@ function load_bot_config($convoArr){
 
     $result = db_query($sql,$con) or die('You have a SQL error on line '. __LINE__ . ' of ' . __FILE__ . '. Error message is: ' . mysql_error() . ".<br />\nSQL = $sql<br />\n");
 
+    $display = $sql;
     return $convoArr;
 
     #if(($result)&&(db_res_count($result)>0)){
