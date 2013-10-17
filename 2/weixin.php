@@ -3,8 +3,8 @@ include_once("easybot.php");
 header("Content-Type: text/html;charset=utf-8");
 define("TOKEN","easyrobot_weixin");
 $wechatObj = new wechatCallbackapiTest();
-$wechatObj->valid();
-//$wechatObj->responseMsg();
+//$wechatObj->valid();
+$wechatObj->responseMsg();
 
 class wechatCallbackapiTest
 {
