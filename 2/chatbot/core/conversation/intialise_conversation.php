@@ -316,11 +316,9 @@ function load_bot_config($convoArr){
     
     runDebug( __FILE__, __FUNCTION__, __LINE__, "load bot config SQL: $sql",3);
 
-    //Edit By Jack 取默认参数
-    //$result = db_query($sql,$con) or die('You have a SQL error on line '. __LINE__ . ' of ' . __FILE__ . '. Error message is: ' . mysql_error() . ".<br />\nSQL = $sql<br />\n");
+    $result = db_query($sql,$con) or die('You have a SQL error on line '. __LINE__ . ' of ' . __FILE__ . '. Error message is: ' . mysql_error() . ".<br />\nSQL = $sql<br />\n");
 
     #if(($result)&&(db_res_count($result)>0)){
-    /*
     if($result !== false and (mysql_num_rows($result) > 0)){
         while($row=mysql_fetch_array($result)){
             //$convoArr['conversation']['format']=$row['format']; //set in the form
@@ -337,7 +335,6 @@ function load_bot_config($convoArr){
             $error_response = $row['error_response'];
         }
     }else
-    */
     {
         //$convoArr['conversation']['format']=$default_format; //set in the form
         $convoArr['conversation']['use_aiml_code']=$default_use_aiml_code;
