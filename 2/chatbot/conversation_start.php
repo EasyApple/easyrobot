@@ -160,11 +160,14 @@
       $convoArr = check_set_format($convoArr);
       $convoArr['time_start'] = $time_start;
 
-      $display = "Conf Loaded";
-      return;
-      
+      $display = "Store Loaded";
+
       //load the chatbot configuration
       $convoArr = load_bot_config($convoArr);
+
+      $display += "Store Loaded";
+      return;
+
       //insita
       $convoArr = intialise_convoArray($convoArr);
       //add the bot_id dependant vars
