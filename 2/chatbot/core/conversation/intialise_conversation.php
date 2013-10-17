@@ -10,9 +10,6 @@
 *          the conversation
 ***************************************/
 
-require_once ('config/global_config.php');
-
-
 /**
  * function intialise_convoArray()
  * A function to intialise the conversation array 
@@ -301,6 +298,11 @@ function load_bot_config($convoArr){
 
     global $con,$dbn, $default_format,$default_pattern,$default_update_aiml_code,$default_conversation_lines,$default_remember_up_to,$default_debugemail,$default_debugshow,$default_debugmode,$default_save_state, $error_response;
 
+    $default_pattern = "RANDOM PICKUP LINE";
+    $default_error_response = "No AIML category found. This is a Default Response.";
+    $default_conversation_lines = '1';
+    $default_remember_up_to = '10';
+    
     runDebug( __FILE__, __FUNCTION__, __LINE__, "Getting bot config from DB",1);
 
     //get the values from the db
