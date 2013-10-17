@@ -302,7 +302,7 @@ function load_bot_config($convoArr){
     $default_error_response = "No AIML category found. This is a Default Response.";
     $default_conversation_lines = '1';
     $default_remember_up_to = '10';
-    
+
     runDebug( __FILE__, __FUNCTION__, __LINE__, "Getting bot config from DB",1);
 
     //get the values from the db
@@ -351,7 +351,7 @@ function load_bot_config($convoArr){
         $convoArr['conversation']['debugmode']=1;
     }
 
-    $convoArr['send_to_user'] = $default_error_response;
+    //$convoArr['send_to_user'] = $default_error_response;
     return $convoArr;
 }
     
