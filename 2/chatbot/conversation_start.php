@@ -10,7 +10,14 @@
   * DETAILS: this file is the landing page for all calls to access the bots
   ***************************************/
   $thisFile = __FILE__;
-  if ((isset ($_REQUEST['say'])) && (trim($_REQUEST['say']) == "clear properties"))
+
+  //Edit By Jack 20131017 客户端请求时，不从表单提取内容
+  if(empty($say))
+  {
+    $say = $_REQUEST['say'];
+  }
+
+  if ((isset ($say)) && (trim($say) == "clear properties"))
   {
     session_start();
     // Unset all of the session variables.
@@ -141,5 +148,5 @@
   $time = $time_end - $time_start;
   runDebug(__FILE__, __FUNCTION__, __LINE__, "Script took $time seconds", 2);
 
-  $display = "Test";
+  //$display = "Test";
 ?>
