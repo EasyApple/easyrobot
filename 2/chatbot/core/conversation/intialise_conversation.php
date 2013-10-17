@@ -298,10 +298,15 @@ function load_bot_config($convoArr){
 
     global $con,$dbn, $default_format,$default_pattern,$default_update_aiml_code,$default_conversation_lines,$default_remember_up_to,$default_debugemail,$default_debugshow,$default_debugmode,$default_save_state, $error_response;
 
-    $default_pattern = "RANDOM PICKUP LINE";
-    $default_error_response = "No AIML category found. This is a Default Response.";
+    $default_bot_id = 1;
+    $default_format = '[default_format]';
+    $default_use_aiml_code = '[default_use_aiml_code]';
+    $default_update_aiml_code = '[default_update_aiml_code]';
+    $default_pattern = 'RANDOM PICKUP LINE';
+    $default_error_response = 'No AIML category found. This is a Default Response.';
     $default_conversation_lines = '1';
     $default_remember_up_to = '10';
+    $default_debugemail = '[default_debugemail]';
 
     runDebug( __FILE__, __FUNCTION__, __LINE__, "Getting bot config from DB",1);
 
