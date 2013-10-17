@@ -7,13 +7,19 @@ class EasyRobot
   {
     $display = "";
     $thisFile = __FILE__;
-    $say = $s;
+
     $_GET['say'] = $s;
     $_POST['say'] = $s;
 
+    session_start();
+    session_regenerate_id();
+    $new_id = session_id();
+    //TODO WHICH ONE IS IT?
+    $_GET['convo_id'] = $new_id;
+    $_POST['convo_id'] = $new_id;
+    $_REQUEST['convo_id'] = $new_id;
     $_REQUEST['bot_id'] = 1;
-    //session started in the conversation_start.php
-    $_REQUEST['convo_id'] = session_id();
+    $_REQUEST['say'] = $s;
     $_REQUEST['format'] = "html";
 
     require_once ('config/global_config.php');
