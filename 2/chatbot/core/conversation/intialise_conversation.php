@@ -10,6 +10,9 @@
 *          the conversation
 ***************************************/
 
+require_once ('config/global_config.php');
+
+
 /**
  * function intialise_convoArray()
  * A function to intialise the conversation array 
