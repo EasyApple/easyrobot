@@ -160,6 +160,9 @@
       $convoArr = check_set_format($convoArr);
       $convoArr['time_start'] = $time_start;
 
+      $display = "Conf Loaded";
+      return;
+      
       //load the chatbot configuration
       $convoArr = load_bot_config($convoArr);
       //insita
@@ -169,8 +172,6 @@
       $convoArr['conversation']['totallines'] = 0;
       $convoArr = get_user_id($convoArr);
 
-      $display = "Conf Loaded";
-      return;
 
       $convoArr['aiml'] = array();
       //add the latest thing the user said
