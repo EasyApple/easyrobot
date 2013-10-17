@@ -355,8 +355,7 @@ function load_bot_config($convoArr){
     {
         $convoArr['conversation']['debugmode']=1;
     }
-
-    //$convoArr['send_to_user'] = $default_error_response;
+    
     return $convoArr;
 }
     
