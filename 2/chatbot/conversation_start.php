@@ -169,13 +169,15 @@
       $convoArr = add_firstturn_conversation_vars($convoArr);
       $convoArr['conversation']['totallines'] = 0;
       $convoArr = get_user_id($convoArr);
+      $convoArr['aiml'] = array();
+
+      //add the latest thing the user said
+      $convoArr = add_new_conversation_vars($say, $convoArr);
+
 
       $display = "Compelete";
       return;
-
-      $convoArr['aiml'] = array();
-      //add the latest thing the user said
-      $convoArr = add_new_conversation_vars($say, $convoArr);
+      
       //parse the aiml
       $convoArr = make_conversation($convoArr);
       $convoArr = log_conversation($convoArr);
