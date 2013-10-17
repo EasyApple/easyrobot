@@ -163,7 +163,7 @@
       //load the chatbot configuration
       //$convoArr = load_bot_config($convoArr);
 
-      $display += "Store Loaded";
+      $display = "Store Loaded";
       return;
 
       //insita
