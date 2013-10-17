@@ -303,8 +303,6 @@ function load_bot_config($convoArr){
     //get the values from the db
     $sql = "SELECT * FROM `$dbn`.`bots` WHERE bot_id = '".$convoArr['conversation']['bot_id']."'";
     
-
-
     runDebug( __FILE__, __FUNCTION__, __LINE__, "load bot config SQL: $sql",3);
 
     //$result = db_query($sql,$con) or die('You have a SQL error on line '. __LINE__ . ' of ' . __FILE__ . '. Error message is: ' . mysql_error() . ".<br />\nSQL = $sql<br />\n");
@@ -346,8 +344,6 @@ function load_bot_config($convoArr){
     {
         $convoArr['conversation']['debugmode']=1;
     }
-
-
 
     return $convoArr;
 }
