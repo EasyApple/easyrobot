@@ -44,6 +44,13 @@
   else
   {
     session_start();
+    session_regenerate_id();
+    $new_id = session_id();
+    //TODO WHICH ONE IS IT?
+    $_GET['convo_id'] = $new_id;
+    $_POST['convo_id'] = $new_id;
+    $_REQUEST['convo_id'] = $new_id;
+    $_REQUEST['say'] = $say;
   }
 
   $time_start = microtime(true);
