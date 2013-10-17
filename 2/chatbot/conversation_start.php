@@ -11,13 +11,14 @@
   ***************************************/
   $thisFile = __FILE__;
 
-  //Edit By Jack 20131017 客户端请求时，不从表单提取内容
-  if(empty($say))
+  //Edit By Jack 20131017 增加模式选项
+  $requestMode = "WebMode";
+  if(!empty($say))
   {
-    $say = $_REQUEST['say'];
+    $requestMode = "ClientMode";
   }
 
-  if ((isset ($say)) && (trim($say) == "clear properties"))
+  if ($requestMode == "WebMode" && (isset ($_REQUEST['say'])) && (trim($_REQUEST['say']) == "clear properties"))
   {
     session_start();
     // Unset all of the session variables.
@@ -43,7 +44,10 @@
   else
   {
     session_start();
+    $display = "Test";
+    return;
   }
+
   $time_start = microtime(true);
   require_once ("../config/global_config.php");
   //load shared files
@@ -127,7 +131,7 @@
     runDebug(__FILE__, __FUNCTION__, __LINE__, "Returning " . $convoArr['conversation']['format'], 4);
     if ($convoArr['conversation']['format'] == "html")
     {
-    //TODO what if it is ajax call
+      //TODO what if it is ajax call
       $time_start = $convoArr['time_start'];
       $time_end = microtime(true);
       $time = $time_end - $time_start;
@@ -148,5 +152,4 @@
   $time = $time_end - $time_start;
   runDebug(__FILE__, __FUNCTION__, __LINE__, "Script took $time seconds", 2);
 
-  //$display = "Test";
 ?>
