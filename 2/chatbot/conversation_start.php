@@ -180,13 +180,12 @@
       $convoArr = log_conversation_state($convoArr);
       $convoArr = write_to_session($convoArr);
       $convoArr = get_conversation($convoArr);
+      $convoArr = run_post_response_useraddons($convoArr);
 
       
       
       $display = "Compelete";
       return;
-
-      $convoArr = run_post_response_useraddons($convoArr);
 
 
 
