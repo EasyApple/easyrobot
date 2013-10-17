@@ -74,6 +74,7 @@
   runDebug(__FILE__, __FUNCTION__, __LINE__, "Loaded all Includes", 4);
 
   //if the user has said something
+  //Edit By Jack 20131017 增加客户端模式（微信）处理功能
   if ($requestMode == "WebMode")
   {
     if ((isset ($_REQUEST['say'])) && (trim($_REQUEST['say']) != ""))
@@ -94,12 +95,12 @@
       //if totallines = 0 then this is new user
       if (isset ($convoArr['conversation']['totallines']))
       {
-      //reset the debug level here
+        //reset the debug level here
         $debuglevel = get_convo_var($convoArr, 'conversation', 'debugshow', '', '');
       }
       else
       {
-      //load the chatbot configuration
+        //load the chatbot configuration
         $convoArr = load_bot_config($convoArr);
         //reset the debug level here
         $debuglevel = get_convo_var($convoArr, 'conversation', 'debugshow', '', '');
@@ -110,6 +111,7 @@
         $convoArr['conversation']['totallines'] = 0;
         $convoArr = get_user_id($convoArr);
       }
+
       $convoArr['aiml'] = array();
       //add the latest thing the user said
       $convoArr = add_new_conversation_vars($say, $convoArr);
@@ -122,10 +124,6 @@
       $convoArr = run_post_response_useraddons($convoArr);
       //return the values to display
       $display = $convoArr['send_to_user'];
-
-      //Added By Jack 20130309 
-      //Hide Debug Info
-      return;
 
       runDebug(__FILE__, __FUNCTION__, __LINE__, "Conversation Ending", 4);
       $convoArr = handleDebug($convoArr);
@@ -151,7 +149,52 @@
   }
   else if ($requestMode == "ClientMode")
   {
-    $display = "ClientMode";
+    if ((isset ($say)) && (trim($say) != ""))
+    {
+      //get the stored vars
+      $convoArr = read_from_session();
+      //now overwrite with the recieved data
+      $convoArr = check_set_bot($convoArr);
+      $convoArr = check_set_convo_id($convoArr);
+      $convoArr = check_set_user($convoArr);
+      $convoArr = check_set_format($convoArr);
+      $convoArr['time_start'] = $time_start;
+      //if totallines = 0 then this is new user
+      if (isset ($convoArr['conversation']['totallines']))
+      {
+        //reset the debug level here
+        $debuglevel = get_convo_var($convoArr, 'conversation', 'debugshow', '', '');
+      }
+      else
+      {
+        //load the chatbot configuration
+        $convoArr = load_bot_config($convoArr);
+        //reset the debug level here
+        $debuglevel = get_convo_var($convoArr, 'conversation', 'debugshow', '', '');
+        //insita
+        $convoArr = intialise_convoArray($convoArr);
+        //add the bot_id dependant vars
+        $convoArr = add_firstturn_conversation_vars($convoArr);
+        $convoArr['conversation']['totallines'] = 0;
+        $convoArr = get_user_id($convoArr);
+      }
+      $convoArr['aiml'] = array();
+      //add the latest thing the user said
+      $convoArr = add_new_conversation_vars($say, $convoArr);
+      //parse the aiml
+      $convoArr = make_conversation($convoArr);
+      $convoArr = log_conversation($convoArr);
+      $convoArr = log_conversation_state($convoArr);
+      $convoArr = write_to_session($convoArr);
+      $convoArr = get_conversation($convoArr);
+      $convoArr = run_post_response_useraddons($convoArr);
+      //return the values to display
+      $display = $convoArr['send_to_user'];
+    }
+    else
+    {
+      $display = "Say something please.";
+    }
   }
 
   runDebug(__FILE__, __FUNCTION__, __LINE__, "Closing Database", 2);
