@@ -25,8 +25,10 @@ function run_pre_input_addons(&$convoArr, $say) {
 }
 
 function run_post_response_useraddons($convoArr) {
-  return $convoArr;
   $format = $convoArr['conversation']['format'];
+
+  return $convoArr;
+
   $response = (isset($convoArr['send_to_user'])) ? $convoArr['send_to_user'] : die('<pre>' . print_r($convoArr, true) . "\n</pre>\n");
   $curTime = date('H:i:s');
   $response = str_replace('[serverTime]',$curTime, $response);
