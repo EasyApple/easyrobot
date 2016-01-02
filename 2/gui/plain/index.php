@@ -50,25 +50,27 @@
     <!--Edit By Jack 20130310-->
 		<!--<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />-->
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<title>EasyRobot 灵感机器人</title>
+		<title>EasyRobot</title>
 		<meta name="Description" content="EasyRobot 灵感机器人，专注自然语言交互，乐于倾听更善于表达。
 EasyApple出品，功能逐步完善，后续将开放调用接口。" />
 		<meta name="keywords" content="AIML, PHP, MySQL, Chatbot, EasyRobot, Easybot, 灵感机器人, 聊天机器人, 灵感水手, SAE, 中文机器人" />
 	</head>
 	<body onload="document.getElementById('input').focus()">
   <center>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-3914685173905728";
-  /* 长条横幅2 */
-  google_ad_slot = "8282754143";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-  src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
-	<?php echo $display;?>
+          <br><br>
+          <script type="text/javascript"><!--
+          google_ad_client = "ca-pub-3914685173905728";
+          /* 长条横幅2 */
+          google_ad_slot = "8282754143";
+          google_ad_width = 728;
+          google_ad_height = 90;
+          //-->
+          </script>
+          <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+          </script>
+          <br><br>
+		<?php echo $display;?>
 		<form method="get" action="index.php">
 			<p>
 				<label>Say:</label>
